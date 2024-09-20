@@ -94,7 +94,7 @@ export default function Dashboard() {
             </div>
             <div className={`grid grid-cols-4 gap-7`}>
                 <div className={`col-span-2 bg-base-100 border-2 border-neutral text-white p-3 rounded-lg`}>
-                    <p className={`text-2xl font-semibold mb-5 flex items-center justify-between`}>
+                    <p className={`text-2xl font-semibold mb-5 flex justify-between`}>
                         <span>Portfolio Summary</span>
                         <div className="dropdown">
                             <div tabIndex={0} role="button" className="btn m-1 flex items-center gap-1">{choices[graphData]} <FaAngleDown size={20} color="white" /></div>
