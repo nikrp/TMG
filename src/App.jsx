@@ -11,6 +11,7 @@ export default function App() {
       <div className={`flex-1 flex flex-col `}>
         <Navbar />
         <Routes>
+          <Route path='/' element={<Dashboard />} />
           <Route path='/dashboard' element={<Dashboard />} />
         </Routes>
       </div>

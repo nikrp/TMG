@@ -61,7 +61,7 @@ export default function Dashboard() {
             name: "Sep 19",
             "Total Equity": 100038.60,
             "Total Longs": 5159.1,
-            "Total Shorts": 11346.3,
+            "Total Shorts": -11346.3,
             Cash: 94879.5,
             amt: 150000
         },
