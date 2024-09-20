@@ -1,6 +1,6 @@
-import { FaMoneyBillTrendUp, FaMoneyBills, FaCreditCard, FaWallet, FaAngleDown } from "react-icons/fa6";
+import { FaMoneyBillTrendUp, FaMoneyBills, FaCreditCard, FaWallet, FaAngleDown, FaArrowRightLong } from "react-icons/fa6";
 import * as React from 'react';
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
+import { CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 // import { PieChart } from '@mui/x-charts/PieChart';
 
 export default function Dashboard() {
@@ -11,11 +11,23 @@ export default function Dashboard() {
     const choices = ["Total Equity", "Total Longs", "Total Shorts", "Cash"]
     const dataColorChoices = ["#82ca9d", "#FFA500", "#FF6347", "#007BFF"]
 
-    const stocksMoney = 5159.1;
-    const cash = 94879.5;
-    const bondsMoney = 0;
-    const mutualFundsMoney = 0;
-
+    const accDetails = [
+        { "Value of Long Stocks": "$5,159.10" },
+        { "Value of Mutual Funds": "$0.00" },
+        { "Value of Treasury Bonds": "$0.00" },
+        { "Value of Municipal Bonds": "$0.00" },
+        { "Value of Corporate Bonds": "$0.00" },
+        { "Value of Shorts": "-$11,346.30" }
+    ]
+    const accDetails2 = [
+        { "Buy Margin Requirement": "$10,992.60" },
+        { "Available Equity": "$89,046.00" },
+        { "Minimum Maintenance": "$4,951.62" },
+        { "Interest & Dividends": "$29.18" },
+        { "Fees & Commission": "-$15.00" },
+        { "Realized Gains/Loss": "$0.00" }
+      ];
+      
     const data = [
         {
             name: "Sep 12",
@@ -92,8 +104,8 @@ export default function Dashboard() {
                     <p className={`text-2xl font-semibold`}><span>$94,879.50</span></p>
                 </div>
             </div>
-            <div className={`grid grid-cols-4 gap-7`}>
-                <div className={`col-span-2 bg-base-100 border-2 border-neutral text-white p-3 rounded-lg`}>
+            <div className={`grid grid-cols-4 gap-7 mb-7`}>
+                <div className={`col-span-2 bg-base-100 border-2 border-neutral text-white p-5 rounded-lg`}>
                     <p className={`text-2xl font-semibold mb-5 flex justify-between`}>
                         <span>Portfolio Summary</span>
                         <div className="dropdown">
@@ -116,8 +128,35 @@ export default function Dashboard() {
                         </AreaChart>
                     </ResponsiveContainer>
                 </div>
-                <div className={`bg-base-100 border-2 border-neutral text-white p-3 rounded-lg`}>
+                <div className={`bg-base-100 border-2 border-neutral text-white p-5 rounded-lg col-span-2`}>
                     <p className={`text-2xl font-semibold mb-5`}>Account Details</p>
+                    <div className={`flex items-center gap-6`}>
+                        <div className={`flex flex-col gap-3 w-1/2`}>
+                            {accDetails.map((detail, index) => {
+                                return (
+                                    <div key={index} className={`flex items-center gap-3`}><span className={`text-base text-gray-400`}>{Object.keys(detail)[0]}</span><div className={`flex-1 h-0.5 rounded-full bg-gray-400`}></div><span className={`text-base text-gray-300`}>{Object.values(detail)[0]}</span></div>
+                                )
+                            })}
+                        </div>
+                        <div className={`flex flex-col gap-3 w-1/2`}>
+                            {accDetails2.map((detail, index) => {
+                                return (
+                                    <div key={index} className={`flex items-center gap-3`}><span className={`text-base text-gray-400`}>{Object.keys(detail)[0]}</span><div className={`flex-1 h-0.5 rounded-full bg-gray-400`}></div><span className={`text-base text-gray-300`}>{Object.values(detail)[0]}</span></div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div className={`grid grid-cols-7 gap-7`}>
+                <div className={`col-span-3 bg-base-100 border-2 border-neutral text-white p-5 rounded-lg`}>
+                    <p className={`text-2xl font-semibold mb-5 flex items-center justify-between`}>Equity Positions<span className={`flex items-center gap-2 font-normal text-base cursor-pointer hover:bg-gray-200 hover:bg-opacity-25 transition-all duration-200 ease-in-out px-2 py-1 rounded-lg`}>See All <FaArrowRightLong size={20} color="white" /></span></p>
+                </div>
+                <div className={`col-span-2 bg-base-100 border-2 border-neutral text-white p-5 rounded-lg`}>
+                    <p className={`text-2xl font-semibold mb-5 flex items-center justify-between`}>Watchlists<span className={`flex items-center gap-2 font-normal text-base cursor-pointer hover:bg-gray-200 hover:bg-opacity-25 transition-all duration-200 ease-in-out px-2 py-1 rounded-lg`}>See All <FaArrowRightLong size={20} color="white" /></span></p>
+                </div>
+                <div className={`col-span-2 bg-base-100 border-2 border-neutral text-white p-5 rounded-lg`}>
+                    <p className={`text-2xl font-semibold mb-5 flex items-center justify-between`}>News<span className={`flex items-center gap-2 font-normal text-base cursor-pointer hover:bg-gray-200 hover:bg-opacity-25 transition-all duration-200 ease-in-out px-2 py-1 rounded-lg`}>See All <FaArrowRightLong size={20} color="white" /></span></p>
                 </div>
             </div>
         </div>

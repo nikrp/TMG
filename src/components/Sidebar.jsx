@@ -22,6 +22,8 @@ import { TbReceiptDollar } from "react-icons/tb";
 import { FaSearchDollar } from "react-icons/fa";
 import { IoNewspaperOutline } from "react-icons/io5";
 import { PiNotebookLight } from "react-icons/pi";
+import { RiMenuSearchLine } from "react-icons/ri";
+import { AiOutlineAlert } from "react-icons/ai";
 
 export default function Sidebar() {
     const navigate = useNavigate();
@@ -87,6 +89,8 @@ export default function Sidebar() {
             <div className={`text-base text-white border-left-2 border-emerald-400 hover:bg-gray-400 hover:bg-opacity-20 transition-all ease-in-out duration-200 flex items-center mx-auto rounded-md cursor-pointer mb-1`}><FaSearchDollar size={22} className={`m-2 text-emerald-400`} />Ticker Search</div>
             <div className={`text-base text-white border-left-2 border-emerald-400 hover:bg-gray-400 hover:bg-opacity-20 transition-all ease-in-out duration-200 flex items-center mx-auto rounded-md cursor-pointer mb-1`}><IoNewspaperOutline size={22} className={`m-2 text-emerald-400`} />News</div>
             <div className={`text-base text-white border-left-2 border-emerald-400 hover:bg-gray-400 hover:bg-opacity-20 transition-all ease-in-out duration-200 flex items-center mx-auto rounded-md cursor-pointer mb-1`}><PiNotebookLight size={22} className={`m-2 text-emerald-400`} />Blog</div>
+            <div className={`text-base text-white border-left-2 border-emerald-400 hover:bg-gray-400 hover:bg-opacity-20 transition-all ease-in-out duration-200 flex items-center mx-auto rounded-md cursor-pointer mb-1`}><RiMenuSearchLine size={22} className={`m-2 text-emerald-400`} />Watchlists</div>
+            <div className={`text-base text-white border-left-2 border-emerald-400 hover:bg-gray-400 hover:bg-opacity-20 transition-all ease-in-out duration-200 flex items-center mx-auto rounded-md cursor-pointer mb-1`}><AiOutlineAlert size={22} className={`m-2 text-emerald-400`} />Alerts</div>
           </div>
         </div>
     )
