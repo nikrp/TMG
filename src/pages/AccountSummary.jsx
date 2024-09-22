@@ -589,8 +589,11 @@ export default function AccountSummary() {
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="overview-modal" className="modal">
                 <div className="modal-box">
-                    <h3 className="font-bold text-lg">Article Overview</h3>
-                    <p className="py-4">Press ESC key or click outside to close</p>
+                    <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <h3 className="font-bold text-lg mb-2">Article Overview</h3>
                 </div>
                 <form method="dialog" className="modal-backdrop">
                     <button>close</button>

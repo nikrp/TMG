@@ -1,14 +1,24 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaAngleDown } from "react-icons/fa6";
+import { useLocation } from "react-router-dom";
 
 export default function Navbar() {
+    const location = useLocation();
+
+    function toTitleCase(str) {
+        return str.replace(
+          /\w\S*/g,
+          text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+        );
+    }
+
     return (
         <div className={`min-h-16 bg-base-300 p-5 border-b-2 border-gray-500`} data-theme="dark">
             <div className={`flex items-center justify-between`}>
-                <div className={`breadcrumbs text-base`}>
+                <div className={`breadcrumbs text-lg`}>
                     <ul>
-                        <li><a>Dashboard</a></li>
+                        <li><a>{toTitleCase(location.pathname.split("-").join(" ").substring(1))}</a></li>
                     </ul>
                 </div>
                 <div className={`flex items-center gap-2`}>
