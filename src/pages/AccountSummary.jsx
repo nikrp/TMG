@@ -1,7 +1,16 @@
 import { FaMoneyBillTrendUp, FaMoneyBills, FaCreditCard, FaWallet, FaAngleDown, FaArrowRightLong, FaRotateRight, FaCircle, FaCircleArrowDown, FaCircleArrowUp, FaEllipsisVertical } from "react-icons/fa6";
+import { CiShare1 } from "react-icons/ci";
+import { IoCopyOutline, IoCheckmark } from "react-icons/io5";
 import * as React from 'react';
 import { CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import axios from 'axios';
+import QRCode from "react-qr-code";
+import gmail from '../assets/gmail.svg'
+import whatsapp from '../assets/whatsapp.svg'
+import x from '../assets/x.svg'
+import instagram from '../assets/instagram.svg'
+import facebook from '../assets/facebook.svg'
+
 // import { PieChart } from '@mui/x-charts/PieChart';
 
 const accDetails = [
@@ -282,7 +291,7 @@ const watchlist = [
     }
 ];
 
-export default function Dashboard() {
+export default function AccountSummary() {
     const rowsPerEquityPage = 5;
     const totalPages = Math.ceil(equityPositions.length / rowsPerEquityPage);
     const choices = ["Total Equity", "Total Longs", "Total Shorts", "Cash"]
@@ -294,6 +303,8 @@ export default function Dashboard() {
     const [currentEquityPage, setCurrentEquityPage] = React.useState(1);
     const [currentRows, setCurrentRows] = React.useState(equityPositions.slice((currentEquityPage - 1) * rowsPerEquityPage, currentEquityPage * rowsPerEquityPage));
     const [marketNews, setMarketNews] = React.useState(undefined);
+    const [copied, setCopied] = React.useState(false);
+    const [currentArticle, setCurrentArticle] = React.useState("");
 
     React.useEffect(() => {
         setMinValue(Math.min(...data.map(d => graphData === 0 ? d.te : graphData === 1 ? d.tl : graphData === 2 ? d.ts : d.c)) - (Math.min(...data.map(d => graphData === 0 ? d.te : graphData === 1 ? d.tl : graphData === 2 ? d.ts : d.c)) === 0 ? 0 : 1));
@@ -306,7 +317,7 @@ export default function Dashboard() {
 
     React.useEffect(() => {
         async function getNews() {
-            const response = await axios.get(`https://api.polygon.io/v2/reference/news?limit=5&apiKey=${import.meta.env.VITE_API_TOKEN}`);
+            const response = await axios.get(`https://api.polygon.io/v2/reference/news?limit=4&apiKey=${import.meta.env.VITE_API_TOKEN}`);
             setMarketNews(response.data);
         }
 
@@ -332,6 +343,17 @@ export default function Dashboard() {
           return text.padEnd(maxLength, " ");
         }
     }
+
+    const handleCopyClick = () => {
+        setCopied(true);
+        console.log(currentArticle)
+        navigator.clipboard.writeText(currentArticle);
+
+        // Switch back to IoCopyOutline after 2 seconds
+        setTimeout(() => {
+          setCopied(false);
+        }, 2000);
+      };
 
     return (
         <div data-theme="dark" className={`flex-1 bg-base-200 p-10`}>
@@ -518,23 +540,102 @@ export default function Dashboard() {
                         <p className={`px-2 py-1 rounded-md hover:bg-gray-400 hover:bg-opacity-15 transition-all duration-200 ease-in-out cursor-pointer`}>Finance</p>
                         <p className={`px-2 py-1 rounded-md hover:bg-gray-400 hover:bg-opacity-15 transition-all duration-200 ease-in-out cursor-pointer`}>Defense</p>
                     </div>
-                    {marketNews && (
-                        <div role="a" href={marketNews.results[0].article_url} className={`flex gap-4 p-2 rounded-lg cursor-pointer hover:bg-gray-400 hover:bg-opacity-5 transition-all duration-200 ease-in-out`}>
-                            <img src={marketNews.results[0].image_url} className={`rounded-md h-28 w-48`} />
-                            <div className={`flex-1`}>
-                                <p className={`flex items-center justify-between mb-2`}>
-                                    <p className={`flex items-center gap-1`}><img className={`w-6 h-6 rounded-full mr-1`} src={marketNews.results[0].publisher.favicon_url} /><a href={marketNews.results[0].publisher.homepage_url} className={`no-underline visited:text-white text-white hover:underline hover:underline-offset-2 cursor-pointer mr-2`}>{marketNews.results[0].publisher.name}</a> <span className={`px-1 rounded-sm bg-gray-400 bg-opacity-20 font-semibold flex items-center gap-1 cursor-pointer hover:bg-opacity-30 transition-all duration-200 ease-in-out`}>{marketNews.results[0].tickers[0]} <span className={`text-green-500 text-sm`}>+0.35%</span></span> <span className={`mx-1`}>•</span> {(new Date(marketNews.results[0].published_utc)).toLocaleString()}</p>
-                                    <p onClick={() => console.log("Hello")} className={`hover:bg-gray-400 hover:bg-opacity-15 rounded-md cursor-pointer transition-all duration-200 ease-in-out`}><FaEllipsisVertical size={18} className={`fill-gray-300 m-1`} /></p>
-                                </p>
-                                <p className={`text-xl font-bold mb-1`}>{marketNews.results[0].title}</p>
-                                <p className={`text-gray-400 font-medium mb-1`}>by {marketNews.results[0].author}</p>
-                                <p className={`leading-relaxed line-clamp-2`}>{marketNews.results[0].description}</p>
-                            </div>
-                            {/* Map the tickers the article is about. */}
-                        </div>
-                    )}
+                    {marketNews && marketNews.results.map((result, index) => {
+                        return (
+                            <a key={index} target="blank_" href={result.article_url} className={`mb-1`}>
+                                <div className={`flex gap-4 p-2 rounded-lg cursor-pointer hover:bg-gray-400 hover:bg-opacity-5 transition-all duration-200 ease-in-out`}>
+                                    <img src={result.image_url} className={`rounded-md h-28 w-48`} />
+                                    <div className={`flex-1`}>
+                                        <p className={`flex items-center justify-between mb-2`}>
+                                            <p className={`flex items-center gap-1`}>
+                                                <img className={`w-6 h-6 rounded-full mr-1`} src={result.publisher.favicon_url} />
+                                                <a target="blank_" href={result.publisher.homepage_url} className={`no-underline visited:text-white text-white hover:underline hover:underline-offset-2 cursor-pointer mr-2`}>{result.publisher.name}</a>
+                                                <div className={`flex items-center gap-1`}>
+                                                    {result.tickers.slice(0, 3).map((ticker, index) => {
+                                                        return (
+                                                            <span key={index} onClick={(e) => e.stopPropagation()} className={`px-1 rounded-sm bg-gray-400 bg-opacity-20 font-semibold flex items-center gap-1 cursor-pointer hover:bg-opacity-30 transition-all duration-200 ease-in-out`}>
+                                                                <a href={`https://www.tradingview.com/symbols/${ticker}/`} target="_blank" rel="noopener noreferrer">
+                                                                    {ticker}
+                                                                    <span className={`text-green-500 text-sm ml-1`}>+{0.35 + index}%</span>
+                                                                </a>
+                                                            </span>
+                                                        )
+                                                    })}
+                                                </div>
+                                                <span className={`mx-1`}>•</span>
+                                                {(new Date(result.published_utc)).toLocaleString()}
+                                            </p>
+                                            <div className="dropdown dropdown-right">
+                                                <p tabIndex={0} onClick={(e) => {e.preventDefault(); e.stopPropagation()}} role="button" className={`hover:bg-gray-400 hover:bg-opacity-15 rounded-md p-1 cursor-pointer transition-all duration-200 ease-in-out`}>
+                                                    <FaEllipsisVertical size={18} className={`fill-gray-300`} />
+                                                </p>
+                                                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                                                    <li onClick={(e) => {e.preventDefault(); e.stopPropagation(); setCurrentArticle(result.article_url); document.getElementById("overview-modal").showModal()}}><a>See Overview</a></li>
+                                                    <li><a>Save for Later</a></li>
+                                                    <li onClick={(e) => {e.preventDefault(); e.stopPropagation(); setCurrentArticle(result.article_url); document.getElementById("share-modal").showModal()}}><a>Share</a></li>
+                                                </ul>
+                                            </div>
+                                        </p>
+                                        <p className={`text-xl font-bold mb-1 line-clamp-1`}>{result.title}</p>
+                                        {result.author !== "N/A" && <p className={`text-gray-400 font-medium mb-1`}>by {result.author}</p>}
+                                        <p className={`leading-relaxed line-clamp-2 text-sm text-gray-200`}>{result.description}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        )
+                    })}
                 </div>
             </div>
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+            <dialog id="overview-modal" className="modal">
+                <div className="modal-box">
+                    <h3 className="font-bold text-lg">Article Overview</h3>
+                    <p className="py-4">Press ESC key or click outside to close</p>
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
+            <dialog id="share-modal" className="modal">
+                <div className="modal-box">
+                    <form method="dialog">
+                        {/* if there is a button in form, it will close the modal */}
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <h3 className="font-bold text-lg mb-2">Share Article</h3>
+                    <div className={`flex gap-2 p-2 rounded-md border border-neutral shadow`}>
+                        <div className={`p-1 rounded-sm bg-white w-24 h-24`}>
+                            <QRCode
+                                size={365}
+                                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                                value={currentArticle}
+                                viewBox={`0 0 256 256`}
+                            />
+                        </div>
+                        <div className={`flex-1 flex flex-col justify-between`}>
+                            <div className={`flex gap-1 h-fit`}>
+                                <input type="text" value={currentArticle} readOnly className="input input-bordered border border-neutral input-sm h-fit flex-1" />
+                                <div className={`border border-neutral shadow-md rounded-md cursor-pointer h-fit hover:scale-105 duration-150 transition-all ease-in-out`}>
+                                    <a href={currentArticle} target="_blank" rel="noopener noreferrer">
+                                        <CiShare1 size={20} className={`m-1.5`} />
+                                    </a>
+                                    </div>
+                                <div data-tip={copied ? "Copied" : "Copy"} onClick={handleCopyClick} className={`tooltip tooltip-bottom border border-neutral shadow-md rounded-md cursor-pointer h-fit hover:scale-105 duration-150 transition-all ease-in-out`}>{copied ? <IoCheckmark size={20} className={`m-1.5`} /> : <IoCopyOutline size={20} className={`m-1.5`} />}</div>
+                            </div>
+                            <div className={`flex items-center justify-between`}>
+                                <div className={`rounded-full border border-neutral shadow hover:bg-gray-400 hover:bg-opacity-15 cursor-pointer`}><img src={gmail} alt="Gmail" className={`w-9 h-9 m-1.5`} /></div>
+                                <div className={`rounded-full border border-neutral shadow hover:bg-gray-400 hover:bg-opacity-15 cursor-pointer`}><img src={whatsapp} alt="WhatsApp" className={`w-9 h-9 m-1.5`} /></div>
+                                <div className={`rounded-full border border-neutral shadow hover:bg-gray-400 hover:bg-opacity-15 cursor-pointer`}><img src={x} alt="X" className={`w-9 h-9 m-1.5`} /></div>
+                                <div className={`rounded-full border border-neutral shadow hover:bg-gray-400 hover:bg-opacity-15 cursor-pointer`}><img src={instagram} alt="Instagram" className={`w-9 h-9 m-1.5`} /></div>
+                                <div className={`rounded-full border border-neutral shadow hover:bg-gray-400 hover:bg-opacity-15 cursor-pointer`}><img src={facebook} alt="Facebook" className={`w-9 h-9 m-1.5`} /></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form method="dialog" className="modal-backdrop">
+                    <button>close</button>
+                </form>
+            </dialog>
         </div>
     )
 }

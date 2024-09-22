@@ -1,7 +1,8 @@
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
-import Dashboard from './pages/Dashboard';
+import AccountSummary from './pages/AccountSummary';
 import Navbar from './components/Navbar';
+import PageNotFound from './pages/PageNotFound';
 // import Navbar from './components/Navbar';
 
 export default function App() {
@@ -11,8 +12,9 @@ export default function App() {
       <div className={`flex-1 flex flex-col `}>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Dashboard />} />
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/' element={<AccountSummary />} />
+          <Route path='/account-summary' element={<AccountSummary />} />
+          <Route path='*' element={<PageNotFound />} />
         </Routes>
       </div>
     </div>
