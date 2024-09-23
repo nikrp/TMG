@@ -874,6 +874,11 @@ html {
     text-decoration-line: underline;
   }
 
+  .label a:hover {
+    --tw-text-opacity: 1;
+    color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+  }
+
   .menu li > *:not(ul, .menu-title, details, .btn):active,
 .menu li > *:not(ul, .menu-title, details, .btn).active,
 .menu li > details > summary:active {
@@ -1147,6 +1152,19 @@ html {
 
 .dropdown:is(details) summary::-webkit-details-marker {
   display: none;
+}
+
+.label {
+  display: flex;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .input {
@@ -1525,6 +1543,12 @@ html {
   color: var(--fallback-er,oklch(var(--er)/var(--tw-text-opacity)));
 }
 
+.btm-nav > *:where(.active) {
+  border-top-width: 2px;
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
+}
+
 .btm-nav > *.disabled,
     .btm-nav > *[disabled] {
   pointer-events: none;
@@ -1533,6 +1557,11 @@ html {
   --tw-bg-opacity: 0.1;
   color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
   --tw-text-opacity: 0.2;
+}
+
+.btm-nav > * .label {
+  font-size: 1rem;
+  line-height: 1.5rem;
 }
 
 .breadcrumbs > ul > li > a:focus, .breadcrumbs > ol > li > a:focus {
@@ -1738,6 +1767,18 @@ html {
   outline-width: 2px;
   outline-offset: 2px;
   outline-color: var(--fallback-bc,oklch(var(--bc)/0.2));
+}
+
+.input-secondary {
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-s,oklch(var(--s)/var(--tw-border-opacity)));
+}
+
+.input-secondary:focus,
+    .input-secondary:focus-within {
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-s,oklch(var(--s)/var(--tw-border-opacity)));
+  outline-color: var(--fallback-s,oklch(var(--s)/1));
 }
 
 .input:has(> input[disabled]),
@@ -2052,6 +2093,22 @@ html {
   }
 }
 
+.btm-nav-xs > *:where(.active) {
+  border-top-width: 1px;
+}
+
+.btm-nav-sm > *:where(.active) {
+  border-top-width: 2px;
+}
+
+.btm-nav-md > *:where(.active) {
+  border-top-width: 2px;
+}
+
+.btm-nav-lg > *:where(.active) {
+  border-top-width: 4px;
+}
+
 .btn-sm {
   height: 2rem;
   min-height: 2rem;
@@ -2362,6 +2419,10 @@ html {
   bottom: auto;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -2376,6 +2437,14 @@ html {
 
 .top-2 {
   top: 0.5rem;
+}
+
+.left-0 {
+  left: 0px;
+}
+
+.top-0 {
+  top: 0px;
 }
 
 .z-50 {
@@ -2549,6 +2618,14 @@ html {
   height: fit-content;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
+.h-52 {
+  height: 13rem;
+}
+
 .min-h-0 {
   min-height: 0px;
 }
@@ -2616,6 +2693,14 @@ html {
 
 .w-11\/12 {
   width: 91.666667%;
+}
+
+.w-3\/6 {
+  width: 50%;
+}
+
+.w-screen {
+  width: 100vw;
 }
 
 .max-w-5xl {
@@ -2860,6 +2945,11 @@ html {
 .bg-yellow-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+}
+
+.bg-gray-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(75 85 99 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-15 {
