@@ -305,6 +305,8 @@ export default function AccountSummary() {
     const [marketNews, setMarketNews] = React.useState(undefined);
     const [copied, setCopied] = React.useState(false);
     const [currentArticle, setCurrentArticle] = React.useState("");
+    const [newsInsights, setNewsInsights] = React.useState([]);
+    const [keywords, setKeywords] = React.useState([]);
 
     React.useEffect(() => {
         setMinValue(Math.min(...data.map(d => graphData === 0 ? d.te : graphData === 1 ? d.tl : graphData === 2 ? d.ts : d.c)) - (Math.min(...data.map(d => graphData === 0 ? d.te : graphData === 1 ? d.tl : graphData === 2 ? d.ts : d.c)) === 0 ? 0 : 1));
@@ -354,6 +356,13 @@ export default function AccountSummary() {
           setCopied(false);
         }, 2000);
       };
+
+      function toTitleCase(str) {
+        return str.replace(
+          /\w\S*/g,
+          text => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+        );
+    }
 
     return (
         <div data-theme="dark" className={`flex-1 bg-base-200 p-10`}>
@@ -570,7 +579,7 @@ export default function AccountSummary() {
                                                     <FaEllipsisVertical size={18} className={`fill-gray-300`} />
                                                 </p>
                                                 <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                                                    <li onClick={(e) => {e.preventDefault(); e.stopPropagation(); setCurrentArticle(result.article_url); document.getElementById("overview-modal").showModal()}}><a>See Overview</a></li>
+                                                    <li onClick={(e) => {e.preventDefault(); e.stopPropagation(); setNewsInsights(result.insights); setKeywords(result.keywords); document.getElementById("overview-modal").showModal()}}><a>See Overview</a></li>
                                                     <li><a>Save for Later</a></li>
                                                     <li onClick={(e) => {e.preventDefault(); e.stopPropagation(); setCurrentArticle(result.article_url); document.getElementById("share-modal").showModal()}}><a>Share</a></li>
                                                 </ul>
@@ -588,12 +597,36 @@ export default function AccountSummary() {
             </div>
             {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="overview-modal" className="modal">
-                <div className="modal-box">
+                <div className="modal-box w-11/12 max-w-3xl">
                     <form method="dialog">
                         {/* if there is a button in form, it will close the modal */}
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
                     </form>
                     <h3 className="font-bold text-lg mb-2">Article Overview</h3>
+                    <p className={`text-lg font-semibold text-center mb-1.5 text-white`}>Keywords</p>
+                    <div className={`flex items-center flex-wrap gap-2 justify-center mb-4`}>
+                        {keywords && keywords.map((keyword, index) => {
+                            return (
+                                <p key={index} className={`badge badge-neutral px-2 py-1`}>{keyword}</p>
+                            )
+                        })}
+                    </div>
+                    <p className={`text-lg font-semibold text-center mb-1.5 text-white`}>Ticker Sentiment</p>
+                    {newsInsights && newsInsights.map((insight, index) => {
+                        return (
+                            <div key={index} className={`mb-3 border border-neutral rounded-lg shadow p-2 bg-base-300`}>
+                                <p className={`flex items-center gap-1 mb-1`}>
+                                    <span key={index} onClick={(e) => e.stopPropagation()} className={`px-1 rounded-sm w-fit bg-gray-400 bg-opacity-20 font-semibold flex items-center gap-1 cursor-pointer hover:bg-opacity-30 transition-all duration-200 ease-in-out`}>
+                                        <a href={`https://www.tradingview.com/symbols/${insight.ticker}/`} target="_blank" rel="noopener noreferrer">
+                                            {insight.ticker}
+                                            <span className={`text-green-500 text-sm ml-1`}>+{0.35 + index}%</span>
+                                        </a>
+                                    </span> • {toTitleCase(insight.sentiment)}
+                                </p>
+                                <p>{insight.sentiment_reasoning}</p>
+                            </div>
+                        )
+                    })}
                 </div>
                 <form method="dialog" className="modal-backdrop">
                     <button>close</button>
