@@ -400,7 +400,6 @@ export default function AccountSummary() {
                     </p>
                     <ResponsiveContainer width="90%" height={200} className={`mx-auto`}>
                         <AreaChart width={600} height={300} data={data}>
-                            <CartesianGrid stroke="#ccc" />
                             <XAxis dataKey="name" tick={{ fill: '#FFFFFF' }} tickMargin={10} />
                             <YAxis width={100} domain={[minValue, maxValue]} tick={{ fill: '#FFFFFF' }} tickMargin={10} tickFormatter={(value) => `$${value.toLocaleString()}`} />
                             <Area type="monotone" dataKey={choices[graphData]} stroke={dataColorChoices[graphData]} strokeWidth={2} fill={dataColorChoices[graphData]} fillOpacity={0.5} />
