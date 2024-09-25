@@ -14,7 +14,7 @@ export default function Navbar() {
     }
 
     return (
-        <div className={`min-h-16 bg-base-300 p-5 border-b-2 border-gray-500`} data-theme="dark">
+        <div className={`min-h-16 bg-base-300 p-5 border-b border-neutral`} data-theme="dark">
             <div className={`flex items-center justify-between`}>
                 <div className={`breadcrumbs text-lg`}>
                     <ul>

@@ -1,5 +1,8 @@
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { supabase } from './utils/supabase';
+import { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
+import Home from './pages/Home';
 import AccountSummary from './pages/AccountSummary';
 import AccountHoldings from './pages/AccountHoldings';
 import TransactionHistory from './pages/TransactionHistory';
@@ -13,16 +16,31 @@ import Watchlists from './pages/Watchlists';
 import Alerts from './pages/Alerts';
 import Navbar from './components/Navbar';
 import PageNotFound from './pages/PageNotFound';
-// import Navbar from './components/Navbar';
 
 export default function App() {
+  const [todos, setTodos] = useState([])
+  const location = useLocation();
+
+  useEffect(() => {
+    async function getTodos() {
+      const { data: todos } = await supabase.from('todos').select()
+      console.log(todos)
+
+      if (todos.length > 1) {
+        setTodos(todos)
+      }
+    }
+
+    getTodos()
+  }, [])
+
   return (
     <div className={`flex-1 flex flex-row bg-base-300 min-h-screen`} data-theme="dark">
-      <Sidebar />
+      {location.pathname !== '/' && <Sidebar />}
       <div className={`flex-1 flex flex-col `}>
-        <Navbar />
+        {location.pathname !== '/' && <Navbar />}
         <Routes>
-          <Route path='/' element={<AccountSummary />} />
+          <Route path='/' element={<Home />} />
           <Route path='/account-summary' element={<AccountSummary />} />
           <Route path='/account-holdings' element={<AccountHoldings />} />
           <Route path='/transaction-history' element={<TransactionHistory />} />
@@ -30,6 +48,7 @@ export default function App() {
           <Route path='/pending-orders' element={<PendingOrders />} />
           <Route path='/transaction-notes' element={<TransactionNotes />} />
           <Route path='/ticker-search' element={<TickerSearch />} />
+          <Route path='/ticker-search/:symbol/overview' element={<TickerSearch />} />
           <Route path='/news' element={<News />} />
           <Route path='/blog' element={<Blog />} />
           <Route path='/watchlists' element={<Watchlists />} />

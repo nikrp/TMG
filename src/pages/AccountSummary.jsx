@@ -32,6 +32,238 @@ const accDetails2 = [
   
 const data = [
     {
+        name: "Aug 1",
+        "Total Equity": 99980.12,
+        "Total Longs": 0,
+        "Total Shorts": 0,
+        Cash: 99980.12,
+        amt: 150000
+    },
+    {
+        name: "Aug 2",
+        "Total Equity": 100005.34,
+        "Total Longs": 0,
+        "Total Shorts": 0,
+        Cash: 100005.34,
+        amt: 150000
+    },
+    {
+        name: "Aug 5",
+        "Total Equity": 99975.21,
+        "Total Longs": 0,
+        "Total Shorts": 0,
+        Cash: 99975.21,
+        amt: 150000
+    },
+    {
+        name: "Aug 6",
+        "Total Equity": 99990.48,
+        "Total Longs": 2500.56,
+        "Total Shorts": 0,
+        Cash: 97489.92,
+        amt: 150000
+    },
+    {
+        name: "Aug 7",
+        "Total Equity": 100015.60,
+        "Total Longs": 2523.90,
+        "Total Shorts": 0,
+        Cash: 97491.70,
+        amt: 150000
+    },
+    {
+        name: "Aug 8",
+        "Total Equity": 100025.20,
+        "Total Longs": 2500.34,
+        "Total Shorts": 0,
+        Cash: 97489.66,
+        amt: 150000
+    },
+    {
+        name: "Aug 9",
+        "Total Equity": 99985.45,
+        "Total Longs": 2487.23,
+        "Total Shorts": -500,
+        Cash: 97998.22,
+        amt: 150000
+    },
+    {
+        name: "Aug 12",
+        "Total Equity": 99995.67,
+        "Total Longs": 2480.65,
+        "Total Shorts": -750,
+        Cash: 98265.02,
+        amt: 150000
+    },
+    {
+        name: "Aug 13",
+        "Total Equity": 100005.75,
+        "Total Longs": 2475.23,
+        "Total Shorts": -800,
+        Cash: 98230.52,
+        amt: 150000
+    },
+    {
+        name: "Aug 14",
+        "Total Equity": 100035.88,
+        "Total Longs": 2450.45,
+        "Total Shorts": -1200,
+        Cash: 98260.43,
+        amt: 150000
+    },
+    {
+        name: "Aug 15",
+        "Total Equity": 99980.32,
+        "Total Longs": 2498.12,
+        "Total Shorts": -1150,
+        Cash: 98432.20,
+        amt: 150000
+    },
+    {
+        name: "Aug 16",
+        "Total Equity": 100005.14,
+        "Total Longs": 2482.30,
+        "Total Shorts": -800,
+        Cash: 98100.84,
+        amt: 150000
+    },
+    {
+        name: "Aug 19",
+        "Total Equity": 100015.44,
+        "Total Longs": 2510.90,
+        "Total Shorts": -800,
+        Cash: 98090.54,
+        amt: 150000
+    },
+    {
+        name: "Aug 20",
+        "Total Equity": 100010.70,
+        "Total Longs": 2500.45,
+        "Total Shorts": -1300,
+        Cash: 98050.25,
+        amt: 150000
+    },
+    {
+        name: "Aug 21",
+        "Total Equity": 100030.89,
+        "Total Longs": 2490.34,
+        "Total Shorts": -1100,
+        Cash: 98250.55,
+        amt: 150000
+    },
+    {
+        name: "Aug 22",
+        "Total Equity": 99990.88,
+        "Total Longs": 2450.12,
+        "Total Shorts": -1600,
+        Cash: 98210.76,
+        amt: 150000
+    },
+    {
+        name: "Aug 23",
+        "Total Equity": 100010.50,
+        "Total Longs": 2440.90,
+        "Total Shorts": -1250,
+        Cash: 98250.60,
+        amt: 150000
+    },
+    {
+        name: "Aug 26",
+        "Total Equity": 99950.80,
+        "Total Longs": 2415.23,
+        "Total Shorts": -1450,
+        Cash: 98085.12,
+        amt: 150000
+    },
+    {
+        name: "Aug 27",
+        "Total Equity": 100020.20,
+        "Total Longs": 2390.56,
+        "Total Shorts": -1000,
+        Cash: 98250.12,
+        amt: 150000
+    },
+    {
+        name: "Aug 28",
+        "Total Equity": 100035.90,
+        "Total Longs": 2385.12,
+        "Total Shorts": -1500,
+        Cash: 98450.78,
+        amt: 150000
+    },
+    {
+        name: "Aug 29",
+        "Total Equity": 100045.10,
+        "Total Longs": 2350.60,
+        "Total Shorts": -1200,
+        Cash: 98555.20,
+        amt: 150000
+    },
+    {
+        name: "Aug 30",
+        "Total Equity": 99985.20,
+        "Total Longs": 2325.45,
+        "Total Shorts": -1500,
+        Cash: 98600.00,
+        amt: 150000
+    },
+    {
+        name: "Sep 3",
+        "Total Equity": 100005.10,
+        "Total Longs": 2345.90,
+        "Total Shorts": -1000,
+        Cash: 98659.20,
+        amt: 150000
+    },
+    {
+        name: "Sep 4",
+        "Total Equity": 99950.34,
+        "Total Longs": 2385.10,
+        "Total Shorts": -1200,
+        Cash: 98565.12,
+        amt: 150000
+    },
+    {
+        name: "Sep 5",
+        "Total Equity": 100020.89,
+        "Total Longs": 2360.30,
+        "Total Shorts": -800,
+        Cash: 98750.20,
+        amt: 150000
+    },
+    {
+        name: "Sep 6",
+        "Total Equity": 99980.45,
+        "Total Longs": 2340.50,
+        "Total Shorts": -1100,
+        Cash: 98655.95,
+        amt: 150000
+    },
+    {
+        name: "Sep 9",
+        "Total Equity": 100045.23,
+        "Total Longs": 2320.90,
+        "Total Shorts": -900,
+        Cash: 98725.33,
+        amt: 150000
+    },
+    {
+        name: "Sep 10",
+        "Total Equity": 100030.75,
+        "Total Longs": 2300.12,
+        "Total Shorts": -1200,
+        Cash: 98715.63,
+        amt: 150000
+    },
+    {
+        name: "Sep 11",
+        "Total Equity": 99990.12,
+        "Total Longs": 2290.50,
+        "Total Shorts": -1300,
+        Cash: 98675.40,
+        amt: 150000
+    },
+    {
         name: "Sep 12",
         "Total Equity": 100045.84,
         "Total Longs": 0,
@@ -78,8 +310,8 @@ const data = [
         "Total Shorts": -11346.3,
         Cash: 94879.5,
         amt: 150000
-    },
-]
+    }
+];
 
 const equityPositions = [
     {
@@ -365,31 +597,31 @@ export default function AccountSummary() {
     }
 
     return (
-        <div data-theme="dark" className={`flex-1 bg-base-200 p-10`}>
+        <div data-theme="dark" className={`flex-1 bg-base-300 p-10`}>
             <div className={`grid grid-cols-4 gap-7 mb-7`}>
-                <div className={`bg-base-100 border-2 border-neutral text-white p-3 rounded-lg flex flex-col justify-between`}>
+                <div className={`bg-base-200 border border-neutral text-white p-3 rounded-lg flex flex-col justify-between`}>
                     <p className={`font-semibold text-gray-400 flex mb-2 justify-between`}><span>Total Equity</span><span className={`bg-green-500 bg-opacity-50 border-2 rounded-md border-green-500 border-opacity-75`}><FaMoneyBills color="white" className={`m-1.5`} size={25} /></span></p>
                     <p className={`text-2xl flex items-center justify-between font-semibold`}><span>$100,038.60</span><span className={`text-green-400 text-sm font-medium`}> +0.039% <span className={`text-gray-400`}> +$38.60</span></span></p>
                 </div>
-                <div className={`bg-base-100 border-2 border-neutral text-white p-3 rounded-lg flex flex-col justify-between`}>
+                <div className={`bg-base-200 border border-neutral text-white p-3 rounded-lg flex flex-col justify-between`}>
                     <p className={`font-semibold text-gray-400 flex mb-2 justify-between`}><span>Net Equity Gain</span><span className={`bg-blue-400 bg-opacity-50 border-2 rounded-md border-blue-400 border-opacity-75`}><FaMoneyBillTrendUp color="white" className={`m-1.5`} size={25} /></span></p>
                     <p className={`text-2xl font-semibold`}><span>$38.60</span></p>
                 </div>
-                <div className={`bg-base-100 border-2 border-neutral text-white p-3 rounded-lg  flex flex-col justify-between`}>
+                <div className={`bg-base-200 border border-neutral text-white p-3 rounded-lg  flex flex-col justify-between`}>
                     <p className={`font-semibold text-gray-400 flex mb-2 justify-between`}><span>Buying Power</span><span className={`bg-purple-500 bg-opacity-50 border-2 rounded-md border-purple-500 border-opacity-75`}><FaCreditCard color="white" className={`m-1.5`} size={25} /></span></p>
                     <p className={`text-2xl font-semibold`}><span>$133,569.01</span></p>
                 </div>
-                <div className={`bg-base-100 border-2 border-neutral text-white p-3 rounded-lg  flex flex-col justify-between`}>
+                <div className={`bg-base-200 border border-neutral text-white p-3 rounded-lg  flex flex-col justify-between`}>
                     <p className={`font-semibold text-gray-400 flex mb-2 justify-between`}><span>Cash Balance</span><span className={`bg-yellow-500 bg-opacity-50 border-2 rounded-md border-yellow-500 border-opacity-75`}><FaWallet color="white" className={`m-1.5`} size={25} /></span></p>
                     <p className={`text-2xl font-semibold`}><span>$94,879.50</span></p>
                 </div>
             </div>
             <div className={`grid grid-cols-4 gap-7 mb-7`}>
-                <div className={`col-span-2 bg-base-100 border-2 border-neutral text-white p-5 rounded-lg`}>
+                <div className={`col-span-2 bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
                     <p className={`text-2xl font-semibold mb-5 flex justify-between`}>
                         <span>Portfolio Summary</span>
                         <div className="dropdown">
-                            <div tabIndex={0} role="button" className="btn m-1 flex items-center gap-1">{choices[graphData]} <FaAngleDown size={20} color="white" /></div>
+                            <div tabIndex={0} role="button" className="btn bg-neutral m-1 flex items-center gap-1">{choices[graphData]} <FaAngleDown size={20} color="white" /></div>
                             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                                 <li onClick={() => setGraphData(0)}><a>Total Equity</a></li>
                                 <li onClick={() => setGraphData(1)}><a>Total Longs</a></li>
@@ -403,11 +635,19 @@ export default function AccountSummary() {
                             <XAxis dataKey="name" tick={{ fill: '#FFFFFF' }} tickMargin={10} />
                             <YAxis width={100} domain={[minValue, maxValue]} tick={{ fill: '#FFFFFF' }} tickMargin={10} tickFormatter={(value) => `$${value.toLocaleString()}`} />
                             <Area type="monotone" dataKey={choices[graphData]} stroke={dataColorChoices[graphData]} strokeWidth={2} fill={dataColorChoices[graphData]} fillOpacity={0.5} />
-                            <Tooltip formatter={(value) => `$${value.toLocaleString()}`} />
+                            <Tooltip cursor={false} content={(props) => {
+                                console.log(props);
+                                return ( props.payload.length > 0 ? (
+                                    <div className={`rounded-lg bg-neutral p-2 bg-opacity-80`}>
+                                        <p className={`text-sm mb-1`}>{props.label}</p>
+                                        <p style={{ color: props.payload[0].color }}>{props.payload[0].dataKey}: ${Number(props.payload[0].value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                    </div>) : (<div className={`hidden fixed top-0 left-0`}></div>)
+                                )
+                            }} formatter={(value) => `$${value.toLocaleString()}`} />
                         </AreaChart>
                     </ResponsiveContainer>
                 </div>
-                <div className={`bg-base-100 border-2 border-neutral text-white p-5 rounded-lg col-span-2`}>
+                <div className={`bg-base-200 border border-neutral text-white p-5 rounded-lg col-span-2`}>
                     <p className={`text-2xl font-semibold mb-5 flex items-center justify-between`}>Account Details <span className={`flex items-center gap-2`}><input type={`date`} className={`text-base font-normal px-2 py-1 rounded-lg bg-base-100 border-2 hover:border-gray-500 border-gray-600 focus:border-gray-500 outline-none cursor-pointer`} /><FaRotateRight size={36} color="white" className={`cursor-pointer p-2 hover:bg-gray-400 hover:bg-opacity-25 rounded-lg transition-all duration-200 ease-in-out`} /></span></p>
                     <div className={`flex items-center gap-6`}>
                         <div className={`flex flex-col gap-3 w-1/2`}>
@@ -428,10 +668,10 @@ export default function AccountSummary() {
                 </div>
             </div>
             <div className={`grid grid-cols-3 gap-7 mb-7`}>
-                <div className={`col-span-2 bg-base-100 border-2 border-neutral text-white p-5 rounded-lg`}>
+                <div className={`col-span-2 bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
                     <p className={`text-2xl font-semibold mb-5 flex items-center justify-between`}>Equity Positions</p>
                     <div className="overflow-x-auto h-fit">
-                        <table className="table table-zebra h-fit">
+                        <table className="table table-zebrah-fit">
                             <thead>
                                 <tr>
                                     <th>Ticker</th>
@@ -450,7 +690,7 @@ export default function AccountSummary() {
                             <tbody className={`py-px`}>
                                 {currentRows && currentRows.map((position, index) => {
                                     return (
-                                        <tr key={index}>
+                                        <tr key={index} className={`${index % 2 === 0 ? `bg-base-300` : `bg-base-100`} cursor-pointer hover:bg-base-200 ${index === 0 && `rounded-t-lg`} ${index === currentRows.length - 1 && `rounded-b-lg`}`}>
                                             <td>{position.ticker}</td>
                                             <td>{position.date}</td>
                                             <td>{position.position}</td>
@@ -471,14 +711,14 @@ export default function AccountSummary() {
                         <div className={`w-full flex items-center justify-between`}>
                             <p className={`text-base-content w-1/3 text-opacity-80 font-medium`}>* Intraday positions represent your aggregate net holdings after any intraday purchases or sales</p>
                             <div className="join ml-auto">
-                                <button onClick={goToPreviousPage} className={`join-item btn ${currentEquityPage === 1 && `btn-disabled`}`}>«</button>
+                                <button onClick={goToPreviousPage} className={`join-item disabled:cursor-not-allowed btn ${currentEquityPage === 1 && `btn-disabled`}`}>«</button>
                                 <button disabled className="join-item btn disabled:bg-base-200 disabled:text-white">Page {currentEquityPage}</button>
-                                <button onClick={goToNextPage} className={`join-item btn ${currentEquityPage === totalPages && `btn-disabled`}`}>»</button>
+                                <button onClick={goToNextPage} className={`join-item disabled:cursor-not-allowed btn ${currentEquityPage === totalPages && `btn-disabled`}`}>»</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className={`bg-base-100 border-2 border-neutral text-white p-5 rounded-lg`}>
+                <div className={`bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
                     <p className={`text-2xl font-semibold mb-5 flex items-center justify-between h-fit`}>Watchlists<span className={`flex items-center gap-2 font-normal text-base cursor-pointer hover:bg-gray-200 hover:bg-opacity-15 transition-all duration-200 ease-in-out px-2 py-1 rounded-lg`}>See All <FaArrowRightLong size={20} color="white" /></span></p>
                     <div className="flex-grow overflow-y-auto min-h-0">
                         <div className={`flex flex-col justify-between`}>
@@ -539,7 +779,7 @@ export default function AccountSummary() {
                 </div>
             </div>
             <div className={`grid grid-cols-2 gap-7`}>
-                <div className={`bg-base-100 border-2 border-neutral text-white p-5 rounded-lg`}>
+                <div className={`bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
                     <p className={`text-2xl font-semibold mb-5 flex items-center justify-between h-fit`}>Market News<span className={`flex items-center gap-2 font-normal text-base cursor-pointer hover:bg-gray-200 hover:bg-opacity-15 transition-all duration-200 ease-in-out px-2 py-1 rounded-lg`}>See All <FaArrowRightLong size={20} color="white" /></span></p>
                     <div className={`p-2 px-20 rounded-md border border-neutral text-white bg-base-300 shadow flex items-center justify-between mb-5`}>
                         <p className={`px-2 py-1 rounded-md bg-gray-400 bg-opacity-15 hover:bg-gray-400 hover:bg-opacity-15 transition-all duration-200 ease-in-out cursor-pointer`}>General</p>
