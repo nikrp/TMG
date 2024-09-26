@@ -1,5 +1,7 @@
 import { motion } from "framer-motion"
 import { RiStockLine } from "react-icons/ri"
+import summary_page_snap from '../assets/summary_page_snap.png';
+import total_equity_snap from '../assets/total_equity_snap.png';
 
 export default function Home() {
     return (
@@ -17,16 +19,20 @@ export default function Home() {
                     <button className={`bg-emerald-500 hover:bg-emerald-400 transition-all duration-200 ease-in-out py-2 px-5 rounded-lg text-black`}>Register</button>
                 </div>
             </div>
-            <div className={`w-3/6 mx-auto`}>
+            <div className={`w-3/6 mx-auto flex`}>
                 <div className={`w-1/2`}>
                     <p className={`py-0.5 px-4 rounded-full text-lg bg-base-100 text-base-content w-fit font-medium mb-8`}>LEARN THE FUTURE</p>
-                    <p className={`text-6xl font-semibold text-white mb-5`}>Empowring Young Investors Around the World</p>
+                    <p className={`text-7xl font-semibold text-white mb-5 leading-tight`}>Empowering Young Investors</p>
                     <p className={`text-lg text-base-content`}>
-                        Our stock market game empowers students to master financial literacy through virtual investing. By navigating the global economy, they develop critical thinking and risk management skills while fostering a community of future leaders. Together, we're shaping informed investors ready to take charge of their financial futures.
+                        Explore the World of Investing: Real-World Learning, Virtual Portfolios, and a Global Economy at Your Fingertips.
                     </p>
                 </div>
-                <div className={`w-1/2`}>
-                    
+                <div className={`w-1/2 relative flex`}>
+                    <div class="aspect-square -rotate-45 absolute rounded-full blur-2xl -left-2 -top-10 w-4/6 bg-gradient-to-r from-green-500 to-emerald-500 z-20"></div>
+                    <div class="aspect-square -rotate-45 absolute rounded-full blur-2xl right-0 -bottom-24 w-4/6 bg-gradient-to-r from-emerald-500 to-emerald-300 z-20"></div>
+                    <img src={summary_page_snap} alt="Account Summary Snapshot" className={`rounded-lg w-[500px] z-50 absolute`} />
+                    <img src={total_equity_snap} alt="Total Equity Snapshot" className={`shadow-[rgba(0,0,15,0.5)_-0.5px_-3px_10px_1px] abosolute left-0 top-0 z-[100] w-[250px] h-[75px] rounded-lg border border-neutral`}/>
+                    <img src={total_equity_snap} alt="Total Equity Snapshot" className={`shadow-[rgba(0,0,15,0.5)_-0.5px_-3px_10px_1px] abosolute left-0 top-10 z-[110] w-[250px] h-[75px] rounded-lg border border-neutral`}/>
                 </div>
             </div>
         </div>
