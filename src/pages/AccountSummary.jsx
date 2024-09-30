@@ -598,26 +598,26 @@ export default function AccountSummary() {
 
     return (
         <div data-theme="dark" className={`flex-1 bg-base-300 p-10`}>
-            <div className={`grid grid-cols-4 gap-7 mb-7`}>
-                <div className={`bg-base-200 border border-neutral text-white p-3 rounded-lg flex flex-col justify-between`}>
+            <div className={`grid xl:grid-cols-2 2xl:grid-cols-4 gap-7 mb-7`}>
+                <div className={`bg-base-200 shadow-lg border border-neutral text-white p-3 rounded-lg flex flex-col justify-between`}>
                     <p className={`font-semibold text-gray-400 flex mb-2 justify-between`}><span>Total Equity</span><span className={`bg-green-500 bg-opacity-50 border-2 rounded-md border-green-500 border-opacity-75`}><FaMoneyBills color="white" className={`m-1.5`} size={25} /></span></p>
                     <p className={`text-2xl flex items-center justify-between font-semibold`}><span>$100,038.60</span><span className={`text-green-400 text-sm font-medium`}> +0.039% <span className={`text-gray-400`}> +$38.60</span></span></p>
                 </div>
-                <div className={`bg-base-200 border border-neutral text-white p-3 rounded-lg flex flex-col justify-between`}>
+                <div className={`bg-base-200 shadow-lg border border-neutral text-white p-3 rounded-lg flex flex-col justify-between`}>
                     <p className={`font-semibold text-gray-400 flex mb-2 justify-between`}><span>Net Equity Gain</span><span className={`bg-blue-400 bg-opacity-50 border-2 rounded-md border-blue-400 border-opacity-75`}><FaMoneyBillTrendUp color="white" className={`m-1.5`} size={25} /></span></p>
                     <p className={`text-2xl font-semibold`}><span>$38.60</span></p>
                 </div>
-                <div className={`bg-base-200 border border-neutral text-white p-3 rounded-lg  flex flex-col justify-between`}>
+                <div className={`bg-base-200 shadow-lg border border-neutral text-white p-3 rounded-lg  flex flex-col justify-between`}>
                     <p className={`font-semibold text-gray-400 flex mb-2 justify-between`}><span>Buying Power</span><span className={`bg-purple-500 bg-opacity-50 border-2 rounded-md border-purple-500 border-opacity-75`}><FaCreditCard color="white" className={`m-1.5`} size={25} /></span></p>
                     <p className={`text-2xl font-semibold`}><span>$133,569.01</span></p>
                 </div>
-                <div className={`bg-base-200 border border-neutral text-white p-3 rounded-lg  flex flex-col justify-between`}>
+                <div className={`bg-base-200 shadow-lg border border-neutral text-white p-3 rounded-lg  flex flex-col justify-between`}>
                     <p className={`font-semibold text-gray-400 flex mb-2 justify-between`}><span>Cash Balance</span><span className={`bg-yellow-500 bg-opacity-50 border-2 rounded-md border-yellow-500 border-opacity-75`}><FaWallet color="white" className={`m-1.5`} size={25} /></span></p>
                     <p className={`text-2xl font-semibold`}><span>$94,879.50</span></p>
                 </div>
             </div>
-            <div className={`grid grid-cols-4 gap-7 mb-7`}>
-                <div className={`col-span-2 bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
+            <div className={`grid xl:grid-cols-1 2xl:grid-cols-2 gap-7 mb-7`}>
+                <div className={`col-span-1 bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
                     <p className={`text-2xl font-semibold mb-5 flex justify-between`}>
                         <span>Portfolio Summary</span>
                         <div className="dropdown">
@@ -634,7 +634,7 @@ export default function AccountSummary() {
                         <AreaChart width={600} height={300} data={data}>
                             <XAxis dataKey="name" tick={{ fill: '#FFFFFF' }} tickMargin={10} />
                             <YAxis width={100} domain={[minValue, maxValue]} tick={{ fill: '#FFFFFF' }} tickMargin={10} tickFormatter={(value) => `$${value.toLocaleString()}`} />
-                            <Area type="monotone" dataKey={choices[graphData]} stroke={dataColorChoices[graphData]} strokeWidth={2} fill={dataColorChoices[graphData]} fillOpacity={0.5} />
+                            <Area type="monotone" dataKey={choices[graphData]} stroke={dataColorChoices[graphData]} strokeWidth={1} fill={dataColorChoices[graphData]} fillOpacity={0.5} />
                             <Tooltip cursor={false} content={(props) => {
                                 console.log(props);
                                 return ( props.payload.length > 0 ? (
@@ -647,7 +647,7 @@ export default function AccountSummary() {
                         </AreaChart>
                     </ResponsiveContainer>
                 </div>
-                <div className={`bg-base-200 border border-neutral text-white p-5 rounded-lg col-span-2`}>
+                <div className={`bg-base-200 border border-neutral text-white p-5 rounded-lg col-span-1`}>
                     <p className={`text-2xl font-semibold mb-5 flex items-center justify-between`}>Account Details <span className={`flex items-center gap-2`}><input type={`date`} className={`text-base font-normal px-2 py-1 rounded-lg bg-base-100 border-2 hover:border-gray-500 border-gray-600 focus:border-gray-500 outline-none cursor-pointer`} /><FaRotateRight size={36} color="white" className={`cursor-pointer p-2 hover:bg-gray-400 hover:bg-opacity-25 rounded-lg transition-all duration-200 ease-in-out`} /></span></p>
                     <div className={`flex items-center gap-6`}>
                         <div className={`flex flex-col gap-3 w-1/2`}>
@@ -668,7 +668,7 @@ export default function AccountSummary() {
                 </div>
             </div>
             <div className={`grid grid-cols-3 gap-7 mb-7`}>
-                <div className={`col-span-2 bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
+                <div className={`2xl:col-span-2 xl:col-span-3 bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
                     <p className={`text-2xl font-semibold mb-5 flex items-center justify-between`}>Equity Positions</p>
                     <div className="overflow-x-auto h-fit">
                         <table className="table table-zebrah-fit">
@@ -709,7 +709,7 @@ export default function AccountSummary() {
                         </table>
                         <div className={`w-full h-0.5 bg-gray-400 rounded-full my-2`}></div>
                         <div className={`w-full flex items-center justify-between`}>
-                            <p className={`text-base-content w-1/3 text-opacity-80 font-medium`}>* Intraday positions represent your aggregate net holdings after any intraday purchases or sales</p>
+                            <p className={`text-base-content 2xl:w-1/3 xl:w-1/2 text-opacity-80 font-medium`}>* Intraday positions represent your aggregate net holdings after any intraday purchases or sales</p>
                             <div className="join ml-auto">
                                 <button onClick={goToPreviousPage} className={`join-item disabled:cursor-not-allowed btn ${currentEquityPage === 1 && `btn-disabled`}`}>«</button>
                                 <button disabled className="join-item btn disabled:bg-base-200 disabled:text-white">Page {currentEquityPage}</button>
@@ -718,7 +718,7 @@ export default function AccountSummary() {
                         </div>
                     </div>
                 </div>
-                <div className={`bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
+                <div className={`2xl:col-span-1 xl:col-span-3 bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
                     <p className={`text-2xl font-semibold mb-5 flex items-center justify-between h-fit`}>Watchlists<span className={`flex items-center gap-2 font-normal text-base cursor-pointer hover:bg-gray-200 hover:bg-opacity-15 transition-all duration-200 ease-in-out px-2 py-1 rounded-lg`}>See All <FaArrowRightLong size={20} color="white" /></span></p>
                     <div className="flex-grow overflow-y-auto min-h-0">
                         <div className={`flex flex-col justify-between`}>
@@ -748,7 +748,7 @@ export default function AccountSummary() {
                                                 </div>
                                             </div>
                                             <div className={`col-span-5 flex justify-center items-center`}>
-                                                <ResponsiveContainer width="75%" height={50}>
+                                                <ResponsiveContainer className={`2xl:w-3/4 xl:w-full`} height={50}>
                                                     <AreaChart data={watched.graphData} style={{ cursor: 'pointer' }} onClick={() => console.log("CHART")}>
                                                     <defs>
                                                         <linearGradient id="greenC" x1="0" y1="0" x2="0" y2="1">
@@ -761,7 +761,7 @@ export default function AccountSummary() {
                                                         </linearGradient>
                                                     </defs>
                                                         <YAxis domain={[minYValue - 1, maxYValue + 1]} hide={true} />
-                                                        <Area type="monotone" dataKey={"price"} stroke={watched.percentChange >= 0 ? `#82ca9d` : `#FF6347`} strokeWidth={2} fill={watched.percentChange >= 0 ? `url(#greenC)` : `url(#redC)`} fillOpacity={0.5} />
+                                                        <Area type="monotone" dataKey={"price"} stroke={watched.percentChange >= 0 ? `#82ca9d` : `#FF6347`} strokeWidth={1} fill={watched.percentChange >= 0 ? `url(#greenC)` : `url(#redC)`} fillOpacity={0.5} />
                                                     </AreaChart>
                                                 </ResponsiveContainer>
                                             </div>
@@ -779,7 +779,7 @@ export default function AccountSummary() {
                 </div>
             </div>
             <div className={`grid grid-cols-2 gap-7`}>
-                <div className={`bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
+                <div className={`bg-base-200 border border-neutral text-white p-5 rounded-lg xl:col-span-2 2xl:col-span-1`}>
                     <p className={`text-2xl font-semibold mb-5 flex items-center justify-between h-fit`}>Market News<span className={`flex items-center gap-2 font-normal text-base cursor-pointer hover:bg-gray-200 hover:bg-opacity-15 transition-all duration-200 ease-in-out px-2 py-1 rounded-lg`}>See All <FaArrowRightLong size={20} color="white" /></span></p>
                     <div className={`p-2 px-20 rounded-md border border-neutral text-white bg-base-300 shadow flex items-center justify-between mb-5`}>
                         <p className={`px-2 py-1 rounded-md bg-gray-400 bg-opacity-15 hover:bg-gray-400 hover:bg-opacity-15 transition-all duration-200 ease-in-out cursor-pointer`}>General</p>
@@ -813,7 +813,7 @@ export default function AccountSummary() {
                                                 <span className={`mx-1`}>•</span>
                                                 {(new Date(result.published_utc)).toLocaleString()}
                                             </p>
-                                            <div className="dropdown dropdown-right">
+                                            <div className="dropdown 2xl:dropdown-right xl:dropdown-left">
                                                 <p tabIndex={0} onClick={(e) => {e.preventDefault(); e.stopPropagation()}} role="button" className={`hover:bg-gray-400 hover:bg-opacity-15 rounded-md p-1 cursor-pointer transition-all duration-200 ease-in-out`}>
                                                     <FaEllipsisVertical size={18} className={`fill-gray-300`} />
                                                 </p>
@@ -834,7 +834,6 @@ export default function AccountSummary() {
                     })}
                 </div>
             </div>
-            {/* Open the modal using document.getElementById('ID').showModal() method */}
             <dialog id="overview-modal" className="modal">
                 <div className="modal-box w-11/12 max-w-3xl">
                     <form method="dialog">
