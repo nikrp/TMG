@@ -1,10 +1,8 @@
-import { motion } from "framer-motion"
+import { motion } from 'framer-motion';
 import { RiStockLine } from "react-icons/ri"
 import { FaMoneyBills } from "react-icons/fa6";
-import summary_page_snap from '../assets/summary_page_snap.png';
-import total_equity_snap from '../assets/total_equity_snap.png';
-import net_equity_snap from '../assets/net_equity_snap.png';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart } from 'recharts';
+import { GoArrowLeft, GoArrowRight } from "react-icons/go";
+import { YAxis, ResponsiveContainer, Area, AreaChart } from 'recharts';
 
 const data = [
     {
@@ -66,65 +64,115 @@ const data2 = [
 ]
 
 export default function Home() {
+
     return (
         <div className={`min-h-screen bg-gray-950`}>
             <div className={`flex items-center py-3 pt-6 xl:w-5/6 2xl:w-3/6 justify-between mx-auto mb-20`}>
                 <h1 className={`text-xl font-medium flex items-center gap-2 text-center text-white`}><div className={`bg-emerald-600 rounded-full`}><RiStockLine size={21} color='white' className={`m-2`} /></div>The Market Game</h1>
                 <div className={`flex items-center gap-8`}>
-                    <p className={`text-lg text-base-content cursor-pointer`}>About Us</p>
-                    <p className={`text-lg text-base-content cursor-pointer`}>Features</p>
-                    <p className={`text-lg text-base-content cursor-pointer`}>Support</p>
-                    <p className={`text-lg text-base-content cursor-pointer`}>Contact</p>
+                    <p className={`text-lg text-base-content text-opacity-80 hover:text-opacity-100 cursor-pointer transition-all duration-200 ease-in-out`}>About Us</p>
+                    <p className={`text-lg text-base-content text-opacity-80 hover:text-opacity-100 cursor-pointer transition-all duration-200 ease-in-out`}>Features</p>
+                    <p className={`text-lg text-base-content text-opacity-80 hover:text-opacity-100 cursor-pointer transition-all duration-200 ease-in-out`}>Support</p>
+                    <p className={`text-lg text-base-content text-opacity-80 hover:text-opacity-100 cursor-pointer transition-all duration-200 ease-in-out`}>Contact</p>
                 </div>
                 <div className={`flex items-center gap-2`}>
                     <button className={`bg-neutral hover:bg-opacity-50 transition-all duration-200 ease-in-out py-2 px-5 rounded-lg`}>Login</button>
                     <button className={`bg-emerald-500 hover:bg-emerald-400 transition-all duration-200 ease-in-out py-2 px-5 rounded-lg text-black`}>Register</button>
                 </div>
             </div>
-            <div className={`xl:w-5/6 2xl:w-3/6 mx-auto flex`}>
-                <div className={`w-1/2`}>
-                    <p className={`text-lg text-emerald-500 w-fit font-medium`}>LEARN THE FUTURE</p>
-                    <p className={`text-5xl font-semibold text-white text-opacity-95 mb-5 leading-tight`}>Empowering Young Investors</p>
-                    <p className={`text-lg text-base-content text-opacity-90`}>
+            <div className={`xl:w-5/6 2xl:w-3/6 mx-auto flex mb-32`}>
+                <motion.div className={`w-1/2`}>
+                    <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, delay: 0 }} className={`text-lg text-emerald-500 w-fit font-medium overflow-hidden`}>LEARN THE FUTURE</motion.p>
+                    <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, delay: 0.1 }} className={`text-5xl font-semibold text-white text-opacity-95 mb-5 leading-tight`}>Empowering Young Investors</motion.p>
+                    <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, delay: 0.2 }} className={`text-lg text-base-content text-opacity-90 mb-7`}>
                         Explore the World of Investing: Real-World Learning, Virtual Portfolios, and a Global Economy at Your Fingertips.
-                    </p>
-                </div>
-                <div className={`w-1/2 relative flex justify-center`}>
-                    <div className={`w-8/12 aspect-video rounded-full opacity-60 bg-gradient-to-b from-emerald-950 to-blue-400 blur-xl z-10`}></div>
-                    <div className={`w-2/5 aspect-square absolute right-2 top-5 rounded-full bg-gradient-to-tr from-emerald-950 to-blue-400 p-20 blur-xl z-20`}>
-                        <div className={`bg-gray-950 rounded-full w-full h-full`}></div>
-                    </div>
+                    </motion.p>
+                    <motion.button initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, delay: 0.3, type: "spring" }} className={`px-6 py-3 rounded-lg bg-green-500 text-black hover:bg-green-600 transition-all duration-200 ease-in-out`}>Get Started</motion.button>
+                </motion.div>
+                <motion.div className="w-1/2 relative flex justify-center">
+                    <motion.div
+                        className="w-8/12 aspect-video rounded-full opacity-60 bg-gradient-to-b from-emerald-950 to-blue-400 blur-xl z-10"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.7 }}
+                        transition={{ duration: 0.75, delay: 0.4 }}
+                    ></motion.div>
 
-                    <div className={`bg-base-200 z-50 opacity-60 h-fit w-4/6 absolute right-10 shadow-lg border border-neutral text-white p-3 rounded-lg flex flex-col justify-between`}>
-                        <p className={`font-semibold text-gray-400 flex mb-2 justify-between`}><span>Total Equity</span><span className={`bg-green-500 bg-opacity-50 border-2 rounded-md border-green-500 border-opacity-75`}><FaMoneyBills color="white" className={`m-1.5`} size={25} /></span></p>
-                        <p className={`text-2xl flex items-center justify-between font-semibold`}><span>$100,038.60</span><span className={`text-green-400 text-sm font-medium`}> +0.039% <span className={`text-gray-400`}> +$38.60</span></span></p>
-                    </div>
+                    <motion.div
+                        className="w-2/5 aspect-square absolute right-2 top-5 rounded-full bg-gradient-to-tr from-emerald-950 to-blue-400 p-20 blur-xl z-20"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.7 }}
+                        transition={{ duration: 0.75, delay: 0.4 }}
+                    >
+                        <div className="bg-gray-950 rounded-full w-full h-full"></div>
+                    </motion.div>
 
-                    <div className={`bg-base-200 z-40 opacity-60 h-full w-4/5 absolute left-10 top-5 shadow-lg border border-neutral text-white p-3 rounded-lg flex flex-col justify-between`}>
-                        <p className={`font-semibold text-gray-400 text-2xl flex mb-2`}><span>Cash</span></p>
+                    <motion.div
+                        className="bg-base-200 z-50 opacity-60 h-fit w-4/6 absolute right-5 shadow-lg border border-neutral text-white p-3 rounded-lg flex flex-col justify-between"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.7 }}
+                        transition={{ duration: 0.75, delay: 0.9 }}
+                    >
+                        <p className="font-semibold text-gray-400 flex mb-2 justify-between">
+                            <span>Total Equity</span>
+                            <span className="bg-green-500 bg-opacity-50 border-2 rounded-md border-green-500 border-opacity-75">
+                                <FaMoneyBills color="white" className="m-1.5" size={25} />
+                            </span>
+                        </p>
+                        <p className="text-2xl flex items-center justify-between font-semibold">
+                            <span>$100,038.60</span>
+                            <span className="text-green-400 text-sm font-medium">+0.039% <span className="text-gray-400"> +$38.60</span></span>
+                        </p>
+                    </motion.div>
+
+                    <motion.div
+                        className="bg-base-200 z-40 opacity-60 h-full w-4/5 absolute left-15 top-5 shadow-lg border border-neutral text-white p-3 rounded-lg flex flex-col justify-between"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.7 }}
+                        transition={{ duration: 0.75, delay: 1.4 }}
+                    >
+                        <p className="font-semibold text-gray-400 text-2xl flex mb-2"><span>Cash</span></p>
                         <ResponsiveContainer width="100%" height="100%">
                             <AreaChart width={200} height={66} data={data}>
                                 <Area type="monotone" dataKey="pv" stroke="#007BFF" fill="#007BFF" strokeWidth={1} />
                             </AreaChart>
                         </ResponsiveContainer>
-                    </div>
+                    </motion.div>
 
-                    <div className={`bg-base-200 z-50 opacity-60 aspect-video w-1/4 absolute -bottom-10 right-10 shadow-lg border border-neutral text-white p-3 rounded-lg flex flex-col justify-between`}>
-                        <div className={`flex items-center gap-2 mb-1`}>
-                            <img src={`https://logo.clearbit.com/tesla.com`} className={`w-10 aspect-square rounded-full`} />
-                            <div>
-                                <p className={`font-semibold`}>TSLA</p>
-                                <p>Tesla Inc.</p>
-                            </div>
+                    <motion.div
+                        className="bg-base-200 z-50 opacity-60 aspect-video w-1/4 absolute -bottom-10 right-5 shadow-lg border border-neutral text-white p-3 rounded-lg flex flex-col justify-between"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 0.7 }}
+                        transition={{ duration: 0.75, delay: 1.9 }}
+                    >
+                        <div className="flex items-center gap-2 mb-1">
+                        <img src="https://logo.clearbit.com/tesla.com" className="w-10 aspect-square rounded-full" />
+                        <div>
+                            <p className="font-semibold">TSLA</p>
+                            <p>Tesla Inc.</p>
+                        </div>
                         </div>
                         <ResponsiveContainer width="100%" height="100%">
-                            <AreaChart width={200} height={44} data={data2}>
-                                <YAxis hide domain={[264, 285]} />
-                                <Area type="monotone" dataKey="price" stroke="#FF6347" fill="#FF6347" strokeWidth={1} />
-                            </AreaChart>
+                        <AreaChart width={200} height={44} data={data2}>
+                            <YAxis hide domain={[264, 285]} />
+                            <Area type="monotone" dataKey="price" stroke="#FF6347" fill="#FF6347" strokeWidth={1} />
+                        </AreaChart>
                         </ResponsiveContainer>
-                    </div>
+                    </motion.div>
+                </motion.div>
+            </div>
+            <div className={`xl:w-4/6 2xl:w-3/6 mx-auto flex items-center gap-5`}>
+                <div className={`rounded-full bg-neutral hover:bg-opacity-75 transition-all duration-200 ease-in-out cursor-pointer`}><GoArrowLeft size={24} className={`m-2`} color='white' /></div>
+                <div className={`flex items-center gap-5 overflow-x-hidden`}>
+                    <motion.div initial={{ x: 0 }} animate={{ x:-260 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/tesla.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
+                    <motion.div initial={{ x: 0 }} animate={{ x:-360 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/bny.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
+                    <motion.div initial={{ x: 0 }} animate={{ x:-460 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/apple.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
+                    <motion.div initial={{ x: 0 }} animate={{ x:-560 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/microsoft.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
+                    <motion.div initial={{ x: 0 }} animate={{ x:-660 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/fidelity.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
+                    <motion.div initial={{ x: 0 }} animate={{ x:-760 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/dribbble.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
+                    <motion.div initial={{ x: 0 }} animate={{ x:-860 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/tesla.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
+
                 </div>
+                <div className={`rounded-full bg-neutral hover:bg-opacity-75 transition-all duration-200 ease-in-out cursor-pointer`}><GoArrowRight size={24} className={`m-2`} color='white' /></div>
             </div>
         </div>
     )
