@@ -2,7 +2,9 @@ import { motion } from 'framer-motion';
 import { RiStockLine } from "react-icons/ri"
 import { FaMoneyBills } from "react-icons/fa6";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
+import { TbDeviceDesktopSearch } from "react-icons/tb";
 import { YAxis, ResponsiveContainer, Area, AreaChart } from 'recharts';
+import { useState } from 'react';
 
 const data = [
     {
@@ -64,14 +66,36 @@ const data2 = [
 ]
 
 export default function Home() {
+    const [x, setX] = useState(0);
+    const itemWidth = 160; // Width of a single item (e.g., 128px + gap)
+
+    const slideLeft = () => {
+        // Move the items to the left
+        if (x < 0) setX(x + itemWidth);
+    };
+
+    const slideRight = () => {
+        // Move the items to the right
+        const maxWidth = -(itemWidth * (items.length - 3)); // Show 3 items at a time
+        if (x > maxWidth) setX(x - itemWidth);
+    };
+
+    const items = [
+        { logo: 'tesla.com' },
+        { logo: 'bny.com' },
+        { logo: 'apple.com' },
+        { logo: 'microsoft.com' },
+        { logo: 'fidelity.com' },
+        { logo: 'dribbble.com' },
+    ];
 
     return (
         <div className={`min-h-screen bg-gray-950`}>
             <div className={`flex items-center py-3 pt-6 xl:w-5/6 2xl:w-3/6 justify-between mx-auto mb-20`}>
                 <h1 className={`text-xl font-medium flex items-center gap-2 text-center text-white`}><div className={`bg-emerald-600 rounded-full`}><RiStockLine size={21} color='white' className={`m-2`} /></div>The Market Game</h1>
                 <div className={`flex items-center gap-8`}>
-                    <p className={`text-lg text-base-content text-opacity-80 hover:text-opacity-100 cursor-pointer transition-all duration-200 ease-in-out`}>About Us</p>
                     <p className={`text-lg text-base-content text-opacity-80 hover:text-opacity-100 cursor-pointer transition-all duration-200 ease-in-out`}>Features</p>
+                    <p className={`text-lg text-base-content text-opacity-80 hover:text-opacity-100 cursor-pointer transition-all duration-200 ease-in-out`}>About</p>
                     <p className={`text-lg text-base-content text-opacity-80 hover:text-opacity-100 cursor-pointer transition-all duration-200 ease-in-out`}>Support</p>
                     <p className={`text-lg text-base-content text-opacity-80 hover:text-opacity-100 cursor-pointer transition-all duration-200 ease-in-out`}>Contact</p>
                 </div>
@@ -160,19 +184,72 @@ export default function Home() {
                     </motion.div>
                 </motion.div>
             </div>
-            <div className={`xl:w-4/6 2xl:w-3/6 mx-auto flex items-center gap-5`}>
-                <div className={`rounded-full bg-neutral hover:bg-opacity-75 transition-all duration-200 ease-in-out cursor-pointer`}><GoArrowLeft size={24} className={`m-2`} color='white' /></div>
-                <div className={`flex items-center gap-5 overflow-x-hidden`}>
-                    <motion.div initial={{ x: 0 }} animate={{ x:-260 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/tesla.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
-                    <motion.div initial={{ x: 0 }} animate={{ x:-360 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/bny.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
-                    <motion.div initial={{ x: 0 }} animate={{ x:-460 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/apple.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
-                    <motion.div initial={{ x: 0 }} animate={{ x:-560 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/microsoft.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
-                    <motion.div initial={{ x: 0 }} animate={{ x:-660 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/fidelity.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
-                    <motion.div initial={{ x: 0 }} animate={{ x:-760 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/dribbble.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
-                    <motion.div initial={{ x: 0 }} animate={{ x:-860 }} transition={{ type: "spring" }} className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}><img src={`https://logo.clearbit.com/tesla.com`} className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`} /></motion.div>
-
+            <div className={`xl:w-4/6 2xl:w-3/6 mx-auto flex items-center gap-5 overflow-hidden mb-32`}>
+                {/* Left Arrow */}
+                <div
+                    onClick={slideLeft}
+                    className={`rounded-full bg-neutral hover:bg-opacity-75 transition-all duration-200 ease-in-out cursor-pointer`}
+                >
+                    <GoArrowLeft size={24} className={`m-2`} color="white" />
                 </div>
-                <div className={`rounded-full bg-neutral hover:bg-opacity-75 transition-all duration-200 ease-in-out cursor-pointer`}><GoArrowRight size={24} className={`m-2`} color='white' /></div>
+
+                {/* Carousel Container */}
+                <div className={`flex items-center gap-5 overflow-hidden`}>
+                    <motion.div
+                        animate={{ x }}
+                        transition={{ type: 'tween', ease: "easeInOut" }}
+                        className={`flex gap-5`}
+                    >
+                        {items.map((item, index) => (
+                            <a href={`https://${item.logo}`} target='_blank' rel='noopener noreferrer'>
+                                <motion.div
+                                    key={index}
+                                    className={`w-32 aspect-square rounded-lg flex items-center justify-center p-3 bg-neutral cursor-pointer hover:opacity-75 transition-all duration-200 ease-in-out group`}
+                                >
+                                    <img
+                                        src={`https://logo.clearbit.com/${item.logo}`}
+                                        className={`grayscale group-hover:grayscale-0 rounded-lg w-20 transition-all duration-200 ease-in-out aspect-square`}
+                                    />
+                                </motion.div>
+                            </a>
+                        ))}
+                    </motion.div>
+                </div>
+
+                {/* Right Arrow */}
+                <div
+                    onClick={slideRight}
+                    className={`rounded-full bg-neutral hover:bg-opacity-75 transition-all duration-200 ease-in-out cursor-pointer`}
+                >
+                    <GoArrowRight size={24} className={`m-2`} color="white" />
+                </div>
+            </div>
+            <div className={`xl:w-4/6 2xl:w-3/6 mx-auto flex flex-col mb-32`}>
+                <p className={`text-xl font-normal text-emerald-500 tracking-wide mb-3 text-center`}>FEATURES</p>
+                <h1 className={`text-base-content text-4xl font-medium mb-5 text-center`}>Our Solutions</h1>
+                <div className={`flex`}>
+                    <div className={`flex flex-col gap-2 w-1/2 px-3`}>
+                        <div className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out`}>
+                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}><TbDeviceDesktopSearch size={25} color='black' className='m-3' /></div>
+                            <p className={`text-xl text-green-500 font-normal`}>Teach how to Learn</p>
+                        </div>
+                        <div className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out`}>
+                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}><TbDeviceDesktopSearch size={25} color='black' className='m-3' /></div>
+                            <p className={`text-xl text-green-500 font-normal`}>Teach how to Learn</p>
+                        </div>
+                        <div className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out`}>
+                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}><TbDeviceDesktopSearch size={25} color='black' className='m-3' /></div>
+                            <p className={`text-xl text-green-500 font-normal`}>Teach how to Learn</p>
+                        </div>
+                        <div className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out`}>
+                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}><TbDeviceDesktopSearch size={25} color='black' className='m-3' /></div>
+                            <p className={`text-xl text-green-500 font-normal`}>Teach how to Learn</p>
+                        </div>
+                    </div>
+                    <div className={`w-1/2 px-3 bg-base-200 rounded-xl`}>
+                        
+                    </div>
+                </div>
             </div>
         </div>
     )
