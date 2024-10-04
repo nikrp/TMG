@@ -3,6 +3,12 @@ import { RiStockLine } from "react-icons/ri"
 import { FaMoneyBills } from "react-icons/fa6";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { TbDeviceDesktopSearch } from "react-icons/tb";
+import { TbDeviceDesktopAnalytics } from "react-icons/tb";
+import { TbDeviceImacSearch } from "react-icons/tb";
+import { TbDatabaseSearch } from "react-icons/tb";
+import { TbAlertSquareRounded } from "react-icons/tb";
+import { TbCheck } from "react-icons/tb";
+import { FiClock } from "react-icons/fi";
 import { YAxis, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { useState } from 'react';
 
@@ -67,6 +73,7 @@ const data2 = [
 
 export default function Home() {
     const [x, setX] = useState(0);
+    const [currentFeature, setCurrentFeature] = useState('portfolio-tracking');
     const itemWidth = 160; // Width of a single item (e.g., 128px + gap)
 
     const slideLeft = () => {
@@ -224,33 +231,146 @@ export default function Home() {
                     <GoArrowRight size={24} className={`m-2`} color="white" />
                 </div>
             </div>
-            <div className={`xl:w-4/6 2xl:w-3/6 mx-auto flex flex-col mb-32`}>
-                <p className={`text-xl font-normal text-emerald-500 tracking-wide mb-3 text-center`}>FEATURES</p>
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`xl:w-4/6 2xl:w-3/6 mx-auto flex flex-col mb-32`}>
+                <p className={`text-xl font-normal text-emerald-500 tracking-widest mb-2 text-center`}>FEATURES</p>
                 <h1 className={`text-base-content text-4xl font-medium mb-5 text-center`}>Our Solutions</h1>
                 <div className={`flex`}>
-                    <div className={`flex flex-col gap-2 w-1/2 px-3`}>
-                        <div className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out`}>
-                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}><TbDeviceDesktopSearch size={25} color='black' className='m-3' /></div>
-                            <p className={`text-xl text-green-500 font-normal`}>Teach how to Learn</p>
-                        </div>
-                        <div className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out`}>
-                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}><TbDeviceDesktopSearch size={25} color='black' className='m-3' /></div>
-                            <p className={`text-xl text-green-500 font-normal`}>Teach how to Learn</p>
-                        </div>
-                        <div className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out`}>
-                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}><TbDeviceDesktopSearch size={25} color='black' className='m-3' /></div>
-                            <p className={`text-xl text-green-500 font-normal`}>Teach how to Learn</p>
-                        </div>
-                        <div className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out`}>
-                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}><TbDeviceDesktopSearch size={25} color='black' className='m-3' /></div>
-                            <p className={`text-xl text-green-500 font-normal`}>Teach how to Learn</p>
+                    <div className={`flex flex-col gap-3 w-1/2 px-3`}>
+                        <motion.div 
+                            className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out border ${currentFeature === 'portfolio-tracking' ? `border-emerald-500` : `border-base-200`}`}
+                            initial={{ opacity: 0, y: 20 }} 
+                            whileInView={{ opacity: 1, y: 0 }} 
+                            transition={{ duration: 0.5, delay: 0.1, type: "spring", stiffness: 50 }}  // Delay 0.1s
+                            onClick={() => setCurrentFeature("portfolio-tracking")}
+                        >
+                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}>
+                                <TbDeviceDesktopAnalytics size={25} color='black' className='m-3' />
+                            </div>
+                            <p className={`text-xl text-green-500 font-normal`}>Track your Portfolio</p>
+                        </motion.div>
+
+                        <motion.div 
+                            className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out border ${currentFeature === 'real-time-trades' ? `border-emerald-500` : `border-base-200`}`}
+                            initial={{ opacity: 0, y: 20 }} 
+                            whileInView={{ opacity: 1, y: 0 }} 
+                            transition={{ duration: 0.5, delay: 0.2, type: "spring", stiffness: 50 }}  // Delay 0.2s
+                            onClick={() => setCurrentFeature("real-time-trades")}
+                        >
+                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}>
+                                <FiClock size={25} color='black' className='m-3' />
+                            </div>
+                            <p className={`text-xl text-green-500 font-normal`}>Make Real-Time Trades</p>
+                        </motion.div>
+
+                        <motion.div 
+                            className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out border ${currentFeature === 'market-research' ? `border-emerald-500` : `border-base-200`}`}
+                            initial={{ opacity: 0, y: 20 }} 
+                            whileInView={{ opacity: 1, y: 0 }} 
+                            transition={{ duration: 0.5, delay: 0.3, type: "spring", stiffness: 50 }}  // Delay 0.3s
+                            onClick={() => setCurrentFeature("market-research")}
+                        >
+                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}>
+                                <TbDeviceImacSearch size={25} color='black' className='m-3' />
+                            </div>
+                            <p className={`text-xl text-green-500 font-normal`}>In-Depth Market Research</p>
+                        </motion.div>
+
+                        <motion.div 
+                            className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out border ${currentFeature === 'trade-tracking' ? `border-emerald-500` : `border-base-200`}`}
+                            initial={{ opacity: 0, y: 20 }} 
+                            whileInView={{ opacity: 1, y: 0 }} 
+                            transition={{ duration: 0.5, delay: 0.4, type: "spring", stiffness: 50 }}  // Delay 0.4s
+                            onClick={() => setCurrentFeature("trade-tracking")}
+                        >
+                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}>
+                                <TbDatabaseSearch size={25} color='black' className='m-3' />
+                            </div>
+                            <p className={`text-xl text-green-500 font-normal`}>Keep Track of Every Trade</p>
+                        </motion.div>
+
+                        <motion.div 
+                            className={`flex gap-3 items-center p-4 w-full rounded-xl bg-base-200 group cursor-pointer hover:bg-neutral transition-all duration-150 ease-in-out border ${currentFeature === 'stay-ahead-with-alerts' ? `border-emerald-500` : `border-base-200`}`}
+                            initial={{ opacity: 0, y: 20 }} 
+                            whileInView={{ opacity: 1, y: 0 }} 
+                            transition={{ duration: 0.5, delay: 0.5, type: "spring", stiffness: 50 }}  // Delay 0.5s
+                            onClick={() => setCurrentFeature("stay-ahead-with-alerts")}
+                        >
+                            <div className={`rounded-full flex items-center justify-center bg-green-500 text-black`}>
+                                <TbAlertSquareRounded size={25} color='black' className='m-3' />
+                            </div>
+                            <p className={`text-xl text-green-500 font-normal`}>Stay Ahead with Alerts</p>
+                        </motion.div>
+                    </div>
+                    <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`w-1/2 p-5 bg-base-200 rounded-xl h-fit`}>
+                        {currentFeature === 'portfolio-tracking' ? (
+                            <motion.div key={currentFeature} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, type: "spring", stiffness: 75 }}>
+                                <h3 className={`text-3xl font-bold text-emerald-500 mb-5`}>Track your Portfolio</h3>
+                                <p className={`text-base-content text-lg`}>
+                                    Using our in depth analytics, you can understand your portfolio and your progress in the market.
+                                </p>
+                            </motion.div>
+                        ) : currentFeature === 'real-time-trades' ? (
+                            <motion.div key={currentFeature} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, type: "spring", stiffness: 75 }}>
+                                <h3 className={`text-3xl font-bold text-emerald-500 mb-5`}>Make Real-Time Trades</h3>
+                                <p className={`text-base-content text-lg`}>
+                                    Something Something Something Something Something Somthing Something Something Something Something Something Something Something Something
+                                </p>
+                            </motion.div>
+                        ) : currentFeature === 'market-research' ? (
+                            <motion.div key={currentFeature} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, type: "spring", stiffness: 75 }}>
+                                <h3 className={`text-3xl font-bold text-emerald-500 mb-5`}>In-Depth Market Research</h3>
+                                <p className={`text-base-content text-lg`}>
+                                    Something Something Something Something Something Somthing Something Something Something Something Something Something Something Something Something
+                                </p>
+                            </motion.div>
+                        ) : currentFeature === 'trade-tracking' ? (
+                            <motion.div key={currentFeature} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, type: "spring", stiffness: 75 }}>
+                                <h3 className={`text-3xl font-bold text-emerald-500 mb-5`}>Keep Track of Every Trade</h3>
+                                <p className={`text-base-content text-lg`}>
+                                    Something Something Something Something Something Somthing Something Something Something Something Something Something Something Something Something Something
+                                </p>
+                            </motion.div>
+                        ) : currentFeature === 'stay-ahead-with-alerts' && (
+                            <motion.div key={currentFeature} initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, type: "spring", stiffness: 75 }}>
+                                <h3 className={`text-3xl font-bold text-emerald-500 mb-5`}>Stay Ahead with Alerts</h3>
+                                <p className={`text-base-content text-lg`}>
+                                    Something Something Something Something Something Somthing Something Something Something Something Something Something Something Something Something Something Something
+                                </p>
+                            </motion.div>
+                        )}
+                    </motion.div>
+                </div>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`xl:w-4/6 2xl:w-3/6 mx-auto flex mb-32`}>
+                <div className={`w-3/5 px-5`}>
+                    
+                </div>
+                <div className={`w-2/5 px-5`}>
+                    <p className={`text-xl font-normal text-emerald-500 tracking-widest mb-2 text-left`}>FEATURES</p>
+                    <h1 className={`text-base-content text-4xl font-medium mb-5 text-left`}>Why Choose Us</h1>
+                    <div className={`flex items-center gap-3 mb-4`}>
+                        <div className={`w-10 bg-emerald-900 bg-opacity-25 flex justify-center items-center aspect-square rounded-full`}><TbCheck className={`text-emerald-500 m-2`} size={21} /></div>
+                        <div>
+                            <p className={`text-xl text-base-content mb-0.5`}>Easy to Use</p>
+                            <p className={`text-lg text-base-content font-thin text-opacity-80`}>Our market analysis and trading tools provide a smooth user experience.</p>
                         </div>
                     </div>
-                    <div className={`w-1/2 px-3 bg-base-200 rounded-xl`}>
-                        
+                    <div className={`flex items-center gap-3 mb-4`}>
+                        <div className={`w-10 bg-emerald-900 bg-opacity-25 flex justify-center items-center aspect-square rounded-full`}><TbCheck className={`text-emerald-500 m-2`} size={21} /></div>
+                        <div>
+                            <p className={`text-xl text-base-content mb-0.5`}>Collaboration</p>
+                            <p className={`text-lg text-base-content font-thin text-opacity-80`}>Connect with traders, share insights, and reach your financial goals together.</p>
+                        </div>
+                    </div>
+                    <div className={`flex items-center gap-3 mb-4`}>
+                        <div className={`w-10 bg-emerald-900 bg-opacity-25 flex justify-center items-center aspect-square rounded-full`}><TbCheck className={`text-emerald-500 m-2`} size={21} /></div>
+                        <div>
+                            <p className={`text-xl text-base-content mb-0.5`}>Learning</p>
+                            <p className={`text-lg text-base-content font-thin text-opacity-80`}>Connect with traders and achieve financial goals together.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
     )
 }
