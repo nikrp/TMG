@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { RiStockLine } from "react-icons/ri"
+import { RiDiscordFill, RiStockLine } from "react-icons/ri"
 import { FaMoneyBills } from "react-icons/fa6";
 import { GoArrowLeft, GoArrowRight } from "react-icons/go";
 import { TbDeviceDesktopSearch } from "react-icons/tb";
@@ -7,6 +7,9 @@ import { TbDeviceDesktopAnalytics } from "react-icons/tb";
 import { TbDeviceImacSearch } from "react-icons/tb";
 import { TbDatabaseSearch } from "react-icons/tb";
 import { TbAlertSquareRounded } from "react-icons/tb";
+import { ImFacebook2 } from "react-icons/im";
+import { RiInstagramFill } from "react-icons/ri";
+import { RiTwitterXFill } from "react-icons/ri";
 import { TbCheck } from "react-icons/tb";
 import { FiClock } from "react-icons/fi";
 import { YAxis, ResponsiveContainer, Area, AreaChart } from 'recharts';
@@ -231,7 +234,7 @@ export default function Home() {
                     <GoArrowRight size={24} className={`m-2`} color="white" />
                 </div>
             </div>
-            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`xl:w-4/6 2xl:w-3/6 mx-auto flex flex-col mb-32`}>
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`xl:w-4/6 2xl:w-3/6 mx-auto flex flex-col mb-24`}>
                 <p className={`text-xl font-normal text-emerald-500 tracking-widest mb-2 text-center`}>FEATURES</p>
                 <h1 className={`text-base-content text-4xl font-medium mb-5 text-center`}>Our Solutions</h1>
                 <div className={`flex`}>
@@ -341,7 +344,7 @@ export default function Home() {
                     </motion.div>
                 </div>
             </motion.div>
-            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`xl:w-4/6 2xl:w-3/6 mx-auto flex mb-32`}>
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`xl:w-4/6 2xl:w-3/6 mx-auto flex mb-24`}>
                 <div className={`w-3/5 px-5`}>
                     
                 </div>
@@ -371,6 +374,64 @@ export default function Home() {
                     </div>
                 </div>
             </motion.div>
+            <motion.div initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`xl:w-3/6 2xl:w-2/6 mx-auto flex flex-col mb-24`}>
+                <p className={`text-xl font-normal text-emerald-500 tracking-widest mb-2 text-center`}>ABOUT</p>
+                <h1 className={`text-base-content text-4xl font-medium mb-5 text-center`}>Our Mission</h1>
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`flex gap-4 items-center justify-between mb-16`}>
+                    <img src='https://logo.clearbit.com/apple.com' className={`w-52 aspect-square rounded-lg`} />
+                    <p className={`w-fit text-lg`}>Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something</p>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`flex gap-4 items-center justify-between mb-16`}>
+                    <p className={`w-fit text-right text-lg`}>Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something</p>
+                    <img src='https://logo.clearbit.com/tesla.com' className={`w-52 aspect-square rounded-lg`} />
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`flex gap-4 items-center justify-between mb-16`}>
+                    <img src='https://logo.clearbit.com/microsoft.com' className={`w-52 aspect-square rounded-lg`} />
+                    <p className={`w-fit text-lg`}>Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something</p>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.5, type: "spring", stiffness: 50 }} className={`flex gap-4 items-center justify-between`}>
+                    <p className={`w-fit text-right text-lg`}>Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something Something</p>
+                    <img src='https://logo.clearbit.com/google.com' className={`w-52 aspect-square rounded-lg`} />
+                </motion.div>
+            </motion.div>
+            <div className={`w-full bg-base-200 py-10 flex items-center justify-center`}>
+                <div className={`w-[70%] flex`}>
+                    <div className={`w-[40%]`}>
+                        <h1 className={`text-xl font-medium flex items-center gap-2 text-center text-white mb-2`}><div className={`bg-emerald-600 rounded-full`}><RiStockLine size={21} color='white' className={`m-2`} /></div>The Market Game</h1>
+                        <p className={`text-base-content text-lg text-opacity-60 mb-2`}>
+                            Simplifying stock trading and empowering informed decisions.
+                        </p>
+                        <div className={`flex items-center gap-3`}>
+                            <span className={`border border-emerald-500 rounded-sm hover:bg-emerald-500 hover:bg-opacity-25 transition-all duration-200 ease-in-out cursor-pointer`}><ImFacebook2 size={18} className={`m-2 text-emerald-500`} /></span>
+                            <span className={`border border-emerald-500 rounded-sm hover:bg-emerald-500 hover:bg-opacity-25 transition-all duration-200 ease-in-out cursor-pointer`}><RiInstagramFill size={18} className={`m-2 text-emerald-500`} /></span>
+                            <span className={`border border-emerald-500 rounded-sm hover:bg-emerald-500 hover:bg-opacity-25 transition-all duration-200 ease-in-out cursor-pointer`}><RiTwitterXFill size={18} className={`m-2 text-emerald-500`} /></span>
+                            <span className={`border border-emerald-500 rounded-sm hover:bg-emerald-500 hover:bg-opacity-25 transition-all duration-200 ease-in-out cursor-pointer`}><RiDiscordFill size={18} className={`m-2 text-emerald-500`} /></span>
+                        </div>
+                    </div>
+                    <div className={`w-[60%] flex justify-evenly`}>
+                        <div>
+                            <p className={`text-lg text-base-content text-opacity-95 tracking-wide mb-3`}>RESOURCES</p>
+                            <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Blog</p>
+                            <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Tutorials</p>
+                            <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Documentation</p>
+                            <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70`}>FAQ</p>
+                        </div>
+                        <div>
+                            <p className={`text-lg text-base-content text-opacity-95 tracking-wide mb-3`}>LEGAL</p>
+                            <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Terms of Service</p>
+                            <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Privacy Policy</p>
+                            <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Security</p>
+                            <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70`}>Cookie Policy</p>
+                        </div>
+                        <div>
+                            <p className={`text-lg text-base-content text-opacity-95 tracking-wide mb-3`}>COMMUNITY</p>
+                            <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Forums</p>
+                            <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Feedback</p>
+                            <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70`}>Events</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

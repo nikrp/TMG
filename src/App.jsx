@@ -16,6 +16,7 @@ import Watchlists from './pages/Watchlists';
 import Alerts from './pages/Alerts';
 import Navbar from './components/Navbar';
 import PageNotFound from './pages/PageNotFound';
+import { IoChatbox } from "react-icons/io5";
 
 export default function App() {
   const [todos, setTodos] = useState([])
@@ -56,6 +57,7 @@ export default function App() {
           <Route path='*' element={<PageNotFound />} />
         </Routes>
       </div>
+      <div className={`fixed bottom-5 right-5 bg-emerald-500 rounded-full cursor-pointer hover:bg-emerald-600 transition-all ease-in-out duration-200`}><IoChatbox className={`m-4`} size={24} fill='white' /></div>
     </div>
   )
 }
