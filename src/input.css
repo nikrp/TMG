@@ -35,9 +35,76 @@
     background: linear-gradient(135deg, #E8F1FF, #E3ECFF 30%, #D2DAFF 80%);
 }
 
+.something[data-isOpen="true"] {
+  width: 350px;
+  height: 450px;
+  @apply bg-base-200;
+  @apply border;
+  @apply border-neutral;
+  @apply shadow;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  border-bottom-left-radius: 10px !important;
+  border-bottom-right-radius: 0px !important;
+
+  .something2 {
+    display: none;
+  }
+  
+  .something3 {
+    display: static
+  }
+}
+
+.something[data-isOpen="true"]:hover {
+  @apply bg-base-200;
+  @apply cursor-default;
+}
+
+.something[data-isOpen="false"] {
+  .something3 {
+    display: none;
+  }
+  .something2 {
+    display: static;
+  }
+}
+
 @layer utilities {
   .bg-gradient-radial {
       background: radial-gradient(circle, rgba(0, 204, 255, 0.7), rgba(0, 102, 255, 0.4), rgba(0, 0, 0, 0));
       filter: blur(20px);
   }
 }
+
+/* For WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1); /* Background of the scrollbar track */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tw-bg-base-200); /* Using Tailwind's bg-base-200 */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  @apply rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #45a049; /* Color of the scrollbar thumb on hover */
+}
+
+/* Hide scrollbar arrows */
+::-webkit-scrollbar-button {
+  display: none; /* Hides the buttons */
+}
+
+/* For Firefox */
+.scrollbar {
+  scrollbar-width: thin; /* Change scrollbar width */
+  scrollbar-color: var(--tw-bg-base-200) rgba(0, 0, 0, 0.1); /* thumb color and track color */
+}
+
