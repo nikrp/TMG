@@ -194,7 +194,7 @@ export default function Home() {
                     </motion.div>
                 </motion.div>
             </div>
-            <div className={`xl:w-4/6 2xl:w-3/6 mx-auto flex items-center gap-5 overflow-hidden mb-32`}>
+            <div className={`xl:w-4/6 2xl:w-3/6 mx-auto flex items-center justify-center gap-5 overflow-hidden mb-32`}>
                 {/* Left Arrow */}
                 <div
                     onClick={slideLeft}

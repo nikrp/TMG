@@ -22,6 +22,8 @@ import { VscClose } from "react-icons/vsc";
 import { BiSolidSend } from "react-icons/bi";
 import { GoDotFill } from "react-icons/go";
 import { motion } from 'framer-motion';
+import Register from './pages/Register';
+import Login from './pages/Login';
 
 export default function App() {
   const [todos, setTodos] = useState([])
@@ -137,11 +139,13 @@ export default function App() {
 
   return (
     <div className={`flex-1 flex flex-row bg-base-300 min-h-screen`} data-theme="dark">
-      {location.pathname !== '/' && <Sidebar />}
+      {location.pathname !== '/' || location.pathname !== '/register' || location.pathname !== '/login' && <Sidebar />}
       <div className={`flex-1 flex flex-col `}>
-        {location.pathname !== '/' && <Navbar />}
+        {location.pathname !== '/' || location.pathname !== '/register' || location.pathname !== '/login' && <Navbar />}
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/account-summary' element={<AccountSummary />} />
           <Route path='/account-holdings' element={<AccountHoldings />} />
           <Route path='/transaction-history' element={<TransactionHistory />} />
