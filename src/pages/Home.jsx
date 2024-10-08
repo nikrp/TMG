@@ -14,6 +14,7 @@ import { TbCheck } from "react-icons/tb";
 import { FiClock } from "react-icons/fi";
 import { YAxis, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const data = [
     {
@@ -77,7 +78,8 @@ const data2 = [
 export default function Home() {
     const [x, setX] = useState(0);
     const [currentFeature, setCurrentFeature] = useState('portfolio-tracking');
-    const itemWidth = 160; // Width of a single item (e.g., 128px + gap)
+    const itemWidth = 160;
+    const navigate = useNavigate();
 
     const slideLeft = () => {
         // Move the items to the left
@@ -110,8 +112,8 @@ export default function Home() {
                     <p className={`text-lg text-base-content text-opacity-80 hover:text-opacity-100 cursor-pointer transition-all duration-200 ease-in-out`}>Contact</p>
                 </div>
                 <div className={`flex items-center gap-2`}>
-                    <button className={`bg-neutral hover:bg-opacity-50 transition-all duration-200 ease-in-out py-2 px-5 rounded-lg`}>Login</button>
-                    <button className={`bg-emerald-500 hover:bg-emerald-400 transition-all duration-200 ease-in-out py-2 px-5 rounded-lg text-black`}>Register</button>
+                    <button onClick={() => navigate('/login', { replace: true })} className={`bg-neutral hover:bg-opacity-50 transition-all duration-200 ease-in-out py-2 px-5 rounded-lg`}>Login</button>
+                    <button onClick={() => navigate('/register', { replace: true })} className={`bg-emerald-500 hover:bg-emerald-400 transition-all duration-200 ease-in-out py-2 px-5 rounded-lg text-black`}>Register</button>
                 </div>
             </div>
             <div className={`xl:w-5/6 2xl:w-3/6 mx-auto flex mb-32`}>

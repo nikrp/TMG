@@ -2616,6 +2616,10 @@ html {
   top: 1.25rem;
 }
 
+.left-5 {
+  left: 1.25rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -3310,6 +3314,10 @@ html {
 
 .bg-opacity-80 {
   --tw-bg-opacity: 0.8;
+}
+
+.bg-opacity-35 {
+  --tw-bg-opacity: 0.35;
 }
 
 .bg-gradient-to-b {
