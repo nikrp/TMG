@@ -24,6 +24,7 @@ import { GoDotFill } from "react-icons/go";
 import { motion } from 'framer-motion';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Onboarding from './pages/Onboarding';
 
 export default function App() {
   const [todos, setTodos] = useState([])
@@ -139,12 +140,13 @@ export default function App() {
 
   return (
     <div className={`flex-1 flex flex-row bg-base-300 min-h-screen`} data-theme="dark">
-      {location.pathname !== '/' || location.pathname !== '/register' || location.pathname !== '/login' && <Sidebar />}
+      {location.pathname !== '/' || location.pathname !== '/register' || location.pathname !== '/login' || location.pathname !== '/register/onboarding' ? <Sidebar /> : ``}
       <div className={`flex-1 flex flex-col `}>
-        {location.pathname !== '/' || location.pathname !== '/register' || location.pathname !== '/login' && <Navbar />}
+        {location.pathname !== '/' || location.pathname !== '/register' || location.pathname !== '/login' || location.pathname !== '/register/onboarding' ? <Navbar /> : ``}
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/register' element={<Register />} />
+          <Route path='/register/onboarding' element={<Onboarding />} />
           <Route path='/login' element={<Login />} />
           <Route path='/account-summary' element={<AccountSummary />} />
           <Route path='/account-holdings' element={<AccountHoldings />} />

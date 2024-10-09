@@ -44,6 +44,8 @@ export default function Register() {
         } else {
             console.log("User data inserted successfully:", insertError); // Log the success
         }
+
+        navigate('/onboarding', { replace: false });
     }
     
     function validateValues() {
@@ -146,7 +148,7 @@ export default function Register() {
                 <div className={`w-6/12 min-h-screen max-h-screen flex justify-center items-center`}>
                     <div className={`w-[70%] h-fit flex items-center justify-center relative`}>
                         <p className={`text-3xl text-white`}>
-                            <FaQuoteLeft className={`absolute -inset-10 fill-base-100 z-10`} size={70} />
+                            <FaQuoteLeft className={`absolute -inset-10 fill-neutral fill-opacity-30 z-10`} size={70} />
                             <div className={`z-20 opacity-0`}>
                                 <span className={`mb-4`}>Over the course of a few weeks, we migrated 125,000 users (email/pw, Gmail, Facebook, Apple logins) from Auth0 to @supabase and have now completed the migration. I'm just glad the migration is done 😅 Went well, besides a few edge cases (duplicate emails/linked accounts)</span>
                                 <div className={`flex items-center gap-3 group cursor-pointer`}>
@@ -155,7 +157,7 @@ export default function Register() {
                                             <img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
                                         </div>
                                     </div>
-                                    <p className={`text-lg text-white group-hover:text-emerald-500 transition-all ease-in-out duration-200`}>Daisy UI</p>
+                                    <p className={`text-xl text-white group-hover:text-emerald-500 transition-all ease-in-out duration-200`}>Daisy UI</p>
                                 </div>
                             </div>                            
                             <div className={`z-20 absolute inset-0 flex flex-col gap-0`}>
