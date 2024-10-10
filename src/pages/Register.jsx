@@ -35,7 +35,8 @@ export default function Register() {
                 username: username,
                 first_name: fName,
                 last_name: lName,
-                email: data.user.email // Use the email from the signup process
+                email: data.user.email, // Use the email from the signup process,
+                is_online: true,
             }
         ]);
     
@@ -142,7 +143,7 @@ export default function Register() {
                             </div>
                         </div>
                         <button onClick={validateValues} className={`bg-emerald-500 mb-2 bg-opacity-30 text-white text-lg px-4 py-2 border border-emerald-600 hover:bg-opacity-60 hover:border-emerald-500 transition-all duration-200 ease-in-out rounded-md`}>Register</button>
-                        <p className={`text-white`}>Already have an account? <span className={`text-emerald-500 cursor/ hover:text-opacity-75 cursor-pointer transition-all duration-200 ease-in-out`}>Login</span></p>
+                        <p className={`text-white`}>Already have an account? <span onClick={() => navigate('/login', { replace: true })} className={`text-emerald-500 hover:text-opacity-75 cursor-pointer transition-all duration-200 ease-in-out`}>Login</span></p>
                     </div>
                 </div>
                 <div className={`w-6/12 min-h-screen max-h-screen flex justify-center items-center`}>

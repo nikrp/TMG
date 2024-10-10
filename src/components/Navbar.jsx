@@ -24,13 +24,19 @@ export default function Navbar() {
                 <div className={`flex items-center gap-2`}>
                     <div className={`bg-gray-700 rounded-full cursor-pointer hover:scale-110 transition-all ease-in-out duration-200`}><IoMdNotificationsOutline size={24} className={`m-2`} color="white" /></div>
                     <div className={`bg-gray-700 rounded-full cursor-pointer hover:scale-110 transition-all ease-in-out duration-200`}><IoSettingsOutline size={24} className={`m-2`} color="white" /></div>
-                    <div className={`flex items-center gap-1 ml-3 px-2 py-1 cursor-pointer rounded-md hover:bg-gray-600 hover:bg-opacity-20 transition-all ease-in-out duration-200`}>
-                        <div className="avatar placeholder">
-                            <div className="bg-neutral text-neutral-content w-10 rounded-full">
-                                <span>NP</span>
+                    <div className={`dropdown`}>
+                        <div tabIndex={0} role="button" className={`flex items-center gap-1 ml-3 px-2 py-1 cursor-pointer rounded-md hover:bg-gray-600 hover:bg-opacity-20 transition-all ease-in-out duration-200`}>
+                            <div className="avatar placeholder">
+                                <div className="bg-neutral text-neutral-content w-10 rounded-full">
+                                    <span>NP</span>
+                                </div>
                             </div>
+                            <FaAngleDown size={20} color="white" fill="white" />
                         </div>
-                        <FaAngleDown size={20} color="white" fill="white" />
+                        <ul tabIndex={0} className={`dropdown-content dropdown-left menu bg-base-200 rounded-sm z-[1] p-2 shadow text-base-content`}>
+                            <li className={`font-medium`}><a>Support</a></li>
+                            <li className={`font-medium`}><a>Dark Mode <input type="checkmark" className={`toggle toggle-md`} /></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>

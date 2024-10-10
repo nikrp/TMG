@@ -17,7 +17,7 @@ export default function Sidebar() {
     const location = useLocation();
 
     return (
-        <div data-theme="dark" id='sidebar' className={`w-64 bg-base-300 shadow-xl py-5 px-3 z-50 relative transition-all duration-300 ease-in-out text-base-content border-r border-neutral`}>
+        <div data-theme="dark" id='sidebar' className={`w-64 bg-base-300 py-5 px-3 z-50 relative transition-all duration-300 ease-in-out text-base-content border-r border-neutral`}>
           <h1 className={`text-xl font-normal flex items-center gap-2 text-center text-base-content mx-auto mb-10`}><div className={`bg-emerald-600 rounded-full`}><RiStockLine size={21} color='white' className={`m-2`} /></div>The Market Game</h1>
           <p className={`font-bold text-sm text-base-content mt-2 mb-1`}>Account</p>
           <div className={`ml-2`}>
