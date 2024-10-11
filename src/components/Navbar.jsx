@@ -2,6 +2,7 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaAngleDown } from "react-icons/fa6";
 import { useLocation } from "react-router-dom";
+import { PiMoon } from "react-icons/pi";
 
 export default function Navbar() {
     const location = useLocation();
@@ -22,10 +23,8 @@ export default function Navbar() {
                     </ul>
                 </div>
                 <div className={`flex items-center gap-2`}>
-                    <div className={`bg-gray-700 rounded-full cursor-pointer hover:scale-110 transition-all ease-in-out duration-200`}><IoMdNotificationsOutline size={24} className={`m-2`} color="white" /></div>
-                    <div className={`bg-gray-700 rounded-full cursor-pointer hover:scale-110 transition-all ease-in-out duration-200`}><IoSettingsOutline size={24} className={`m-2`} color="white" /></div>
                     <div className={`dropdown`}>
-                        <div tabIndex={0} role="button" className={`flex items-center gap-1 ml-3 px-2 py-1 cursor-pointer rounded-md hover:bg-gray-600 hover:bg-opacity-20 transition-all ease-in-out duration-200`}>
+                        <div tabIndex={0} role="button" className={`flex items-center gap-3 mr-2 px-2 py-1 cursor-pointer rounded-md hover:bg-gray-600 hover:bg-opacity-20 transition-all ease-in-out duration-200`}>
                             <div className="avatar placeholder">
                                 <div className="bg-neutral text-neutral-content w-10 rounded-full">
                                     <span>NP</span>
@@ -33,11 +32,13 @@ export default function Navbar() {
                             </div>
                             <FaAngleDown size={20} color="white" fill="white" />
                         </div>
-                        <ul tabIndex={0} className={`dropdown-content dropdown-left menu bg-base-200 rounded-sm z-[1] p-2 shadow text-base-content`}>
-                            <li className={`font-medium`}><a>Support</a></li>
-                            <li className={`font-medium`}><a>Dark Mode <input type="checkmark" className={`toggle toggle-md`} /></a></li>
+                        <ul tabIndex={0} className={`dropdown-content dropdown-left menu bg-base-200 rounded-md w-44 z-[1] p-2 shadow text-base-content`}>
+                            <li className={`font-medium`}><a>Profile</a></li>
+                            <li className={`font-medium`}><a>Rules</a></li>
                         </ul>
                     </div>
+                    <div className={`bg-gray-700 rounded-full cursor-pointer transition-all ease-in-out duration-200 group`}><IoMdNotificationsOutline size={24} className={`m-2 group-hover:scale-100 group-hover:-scale-x-100 transition-all ease-in-out duration-300`} color="white" /></div>
+                    <div className={`bg-gray-700 rounded-full cursor-pointer transition-all ease-in-out duration-200 group`}><PiMoon size={24} className={`m-2 group-hover:scale-100 group-hover:-scale-x-100 transition-all ease-in-out duration-300`} color="white" /></div>
                 </div>
             </div>
         </div>
