@@ -7,6 +7,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import { PiPasswordLight } from "react-icons/pi";
 import { FaQuoteLeft } from "react-icons/fa";
 import { useState } from 'react';
+import { TbLoader2 } from 'react-icons/tb';
 
 export default function Register() {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ export default function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [formError, setFormError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     async function register() {
         const { data, error } = await supabase.auth.signUp({
@@ -46,36 +48,45 @@ export default function Register() {
             console.log("User data inserted successfully:", insertError); // Log the success
         }
 
+        setLoading(false);
         navigate('/onboarding', { replace: false });
     }
     
     function validateValues() {
+        setLoading(true);
         if (username.trim() === "") {
             setFormError("Fill out all required fields. No spaces allowed.");
+            setLoading(false);
             return;
         } else if (username.indexOf(" ") !== -1) {
             setFormError("No spaces allowed in username.");
+            setLoading(false);
             return;
         }
 
         if (fName.trim() === "") {
             setFormError("Fill out all required fields. No spaces allowed.");
+            setLoading(false);
             return;
         }
 
         if (!validateEmail(email)) {
             setFormError("Must have valid email address.")
+            setLoading(false);
             return;
         } else if (email.trim() === "") {
             setFormError("Fill out all required fields. No spaces allowed.");
+            setLoading(false);
             return;
         }
 
         if (password.trim() === "") {
             setFormError("Fill out all required fields. No spaces allowed.");
+            setLoading(false);
             return;
         } else if (password.indexOf(" ") !== -1) {
             setFormError("No spaces allowed in username.");
+            setLoading(false);
             return;
         }
 
@@ -142,7 +153,7 @@ export default function Register() {
                                 </div>
                             </div>
                         </div>
-                        <button onClick={validateValues} className={`bg-emerald-500 mb-2 bg-opacity-30 text-white text-lg px-4 py-2 border border-emerald-600 hover:bg-opacity-60 hover:border-emerald-500 transition-all duration-200 ease-in-out rounded-md`}>Register</button>
+                        <button onClick={validateValues} className={`bg-emerald-500 mb-2 bg-opacity-30 text-white text-lg px-4 py-2 border border-emerald-600 hover:bg-opacity-60 hover:border-emerald-500 transition-all duration-200 ease-in-out rounded-md flex items-center justify-center gap-2`}>Register{loading && <TbLoader2 size={23} color='white' className={`animate-spin`} />}</button>
                         <p className={`text-white`}>Already have an account? <span onClick={() => navigate('/login', { replace: true })} className={`text-emerald-500 hover:text-opacity-75 cursor-pointer transition-all duration-200 ease-in-out`}>Login</span></p>
                     </div>
                 </div>

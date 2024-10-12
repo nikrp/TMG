@@ -1,11 +1,12 @@
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { FaAngleDown } from "react-icons/fa6";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PiMoon } from "react-icons/pi";
 
 export default function Navbar() {
     const location = useLocation();
+    const navigate = useNavigate();
 
     function toTitleCase(str) {
         return str.replace(
@@ -33,8 +34,10 @@ export default function Navbar() {
                             <FaAngleDown size={20} color="white" fill="white" />
                         </div>
                         <ul tabIndex={0} className={`dropdown-content dropdown-left menu bg-base-200 rounded-md w-44 z-[1] p-2 shadow text-base-content`}>
-                            <li className={`font-medium`}><a>Profile</a></li>
+                            <li onClick={() => navigate('/account/profile', { replace: true })} className={`font-medium`}><a>Profile</a></li>
+                            <li onClick={() => navigate('/account/settings', { replace: true })} className={`font-medium`}><a>Settings</a></li>
                             <li className={`font-medium`}><a>Rules</a></li>
+                            <li className={`font-medium`}><a>Outside Links</a></li>
                         </ul>
                     </div>
                     <div className={`bg-gray-700 rounded-full cursor-pointer transition-all ease-in-out duration-200 group`}><IoMdNotificationsOutline size={24} className={`m-2 group-hover:scale-100 group-hover:-scale-x-100 transition-all ease-in-out duration-300`} color="white" /></div>

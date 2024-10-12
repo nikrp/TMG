@@ -29,6 +29,9 @@ import { motion } from 'framer-motion';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Onboarding from './pages/Onboarding';
+import Profile from './pages/Profile';
+import ProfileProfile from './pages/ProfileProfile';
+import ProfileSettings from './pages/ProfileSettings';
 
 export default function App() {
   const [todos, setTodos] = useState([])
@@ -153,6 +156,8 @@ export default function App() {
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/account/profile' element={<Profile secondElement={<ProfileProfile />} />} />
+            <Route path='/account/settings' element={<Profile secondElement={<ProfileSettings />} />} />
             <Route path='/register/onboarding' element={<Onboarding />} />
             <Route path='/login' element={<Login />} />
             <Route path='/account-summary' element={<AccountSummary />} />
