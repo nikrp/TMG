@@ -791,6 +791,36 @@ html {
   --tw-contain-style:  ;
 }
 
+.alert {
+  display: grid;
+  width: 100%;
+  grid-auto-flow: row;
+  align-content: flex-start;
+  align-items: center;
+  justify-items: center;
+  gap: 1rem;
+  text-align: center;
+  border-radius: var(--rounded-box, 1rem);
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
+  padding: 1rem;
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+  --alert-bg: var(--fallback-b2,oklch(var(--b2)/1));
+  --alert-bg-mix: var(--fallback-b1,oklch(var(--b1)/1));
+  background-color: var(--alert-bg);
+}
+
+@media (min-width: 640px) {
+  .alert {
+    grid-auto-flow: column;
+    grid-template-columns: auto minmax(auto,1fr);
+    justify-items: start;
+    text-align: start;
+  }
+}
+
 .avatar {
   position: relative;
   display: inline-flex;
@@ -1073,6 +1103,22 @@ html {
 [dir="rtl"] .chat-end .chat-bubble:before {
   -webkit-mask-image: url("data:image/svg+xml,%3csvg width='3' height='3' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill='black' d='m 0 3 L 3 3 L 3 0 C 3 1 1 3 0 3'/%3e%3c/svg%3e");
           mask-image: url("data:image/svg+xml,%3csvg width='3' height='3' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill='black' d='m 0 3 L 3 3 L 3 0 C 3 1 1 3 0 3'/%3e%3c/svg%3e");
+}
+
+.checkbox {
+  flex-shrink: 0;
+  --chkbg: var(--fallback-bc,oklch(var(--bc)/1));
+  --chkfg: var(--fallback-b1,oklch(var(--b1)/1));
+  height: 1.5rem;
+  width: 1.5rem;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: var(--rounded-btn, 0.5rem);
+  border-width: 1px;
+  border-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-border-opacity)));
+  --tw-border-opacity: 0.2;
 }
 
 .dropdown {
@@ -1575,6 +1621,30 @@ html {
   background-color: var(--fallback-b1,oklch(var(--b1)/var(--tw-bg-opacity)));
 }
 
+.toggle {
+  flex-shrink: 0;
+  --tglbg: var(--fallback-b1,oklch(var(--b1)/1));
+  --handleoffset: 1.5rem;
+  --handleoffsetcalculator: calc(var(--handleoffset) * -1);
+  --togglehandleborder: 0 0;
+  height: 1.5rem;
+  width: 3rem;
+  cursor: pointer;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: var(--rounded-badge, 1.9rem);
+  border-width: 1px;
+  border-color: currentColor;
+  background-color: currentColor;
+  color: var(--fallback-bc,oklch(var(--bc)/0.5));
+  transition: background,
+    box-shadow var(--animation-input, 0.2s) ease-out;
+  box-shadow: var(--handleoffsetcalculator) 0 0 2px var(--tglbg) inset,
+    0 0 0 2px var(--tglbg) inset,
+    var(--togglehandleborder);
+}
+
 .avatar-group :where(.avatar) {
   overflow: hidden;
   border-radius: 9999px;
@@ -1770,6 +1840,54 @@ html {
   100% {
     transform: scale(1);
   }
+}
+
+.checkbox:focus {
+  box-shadow: none;
+}
+
+.checkbox:focus-visible {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
+  outline-color: var(--fallback-bc,oklch(var(--bc)/1));
+}
+
+.checkbox:disabled {
+  border-width: 0px;
+  cursor: not-allowed;
+  border-color: transparent;
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-bg-opacity)));
+  opacity: 0.2;
+}
+
+.checkbox:checked,
+  .checkbox[aria-checked="true"] {
+  background-repeat: no-repeat;
+  animation: checkmark var(--animation-input, 0.2s) ease-out;
+  background-color: var(--chkbg);
+  background-image: linear-gradient(-45deg, transparent 65%, var(--chkbg) 65.99%),
+      linear-gradient(45deg, transparent 75%, var(--chkbg) 75.99%),
+      linear-gradient(-45deg, var(--chkbg) 40%, transparent 40.99%),
+      linear-gradient(
+        45deg,
+        var(--chkbg) 30%,
+        var(--chkfg) 30.99%,
+        var(--chkfg) 40%,
+        transparent 40.99%
+      ),
+      linear-gradient(-45deg, var(--chkfg) 50%, var(--chkbg) 50.99%);
+}
+
+.checkbox:indeterminate {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-bg-opacity)));
+  background-repeat: no-repeat;
+  animation: checkmark var(--animation-input, 0.2s) ease-out;
+  background-image: linear-gradient(90deg, transparent 80%, var(--chkbg) 80%),
+      linear-gradient(-90deg, transparent 80%, var(--chkbg) 80%),
+      linear-gradient(0deg, var(--chkbg) 43%, var(--chkfg) 43%, var(--chkfg) 57%, var(--chkbg) 57%);
 }
 
 @keyframes checkmark {
@@ -2250,6 +2368,71 @@ html {
   }
 }
 
+[dir="rtl"] .toggle {
+  --handleoffsetcalculator: calc(var(--handleoffset) * 1);
+}
+
+.toggle:focus-visible {
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
+  outline-color: var(--fallback-bc,oklch(var(--bc)/0.2));
+}
+
+.toggle:hover {
+  background-color: currentColor;
+}
+
+.toggle:checked,
+  .toggle[aria-checked="true"] {
+  background-image: none;
+  --handleoffsetcalculator: var(--handleoffset);
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+}
+
+[dir="rtl"] .toggle:checked, [dir="rtl"] .toggle[aria-checked="true"] {
+  --handleoffsetcalculator: calc(var(--handleoffset) * -1);
+}
+
+.toggle:indeterminate {
+  --tw-text-opacity: 1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+  box-shadow: calc(var(--handleoffset) / 2) 0 0 2px var(--tglbg) inset,
+      calc(var(--handleoffset) / -2) 0 0 2px var(--tglbg) inset,
+      0 0 0 2px var(--tglbg) inset;
+}
+
+[dir="rtl"] .toggle:indeterminate {
+  box-shadow: calc(var(--handleoffset) / 2) 0 0 2px var(--tglbg) inset,
+        calc(var(--handleoffset) / -2) 0 0 2px var(--tglbg) inset,
+        0 0 0 2px var(--tglbg) inset;
+}
+
+.toggle-success:focus-visible {
+  outline-color: var(--fallback-su,oklch(var(--su)/1));
+}
+
+.toggle-success:checked,
+    .toggle-success[aria-checked="true"] {
+  border-color: var(--fallback-su,oklch(var(--su)/var(--tw-border-opacity)));
+  --tw-border-opacity: 0.1;
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-su,oklch(var(--su)/var(--tw-bg-opacity)));
+  --tw-text-opacity: 1;
+  color: var(--fallback-suc,oklch(var(--suc)/var(--tw-text-opacity)));
+}
+
+.toggle:disabled {
+  cursor: not-allowed;
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-border-opacity)));
+  background-color: transparent;
+  opacity: 0.3;
+  --togglehandleborder: 0 0 0 3px var(--fallback-bc,oklch(var(--bc)/1)) inset,
+      var(--handleoffsetcalculator) 0 0 3px var(--fallback-bc,oklch(var(--bc)/1)) inset;
+}
+
 .btm-nav-xs > *:where(.active) {
   border-top-width: 1px;
 }
@@ -2354,6 +2537,30 @@ html {
   border-start-start-radius: 0;
   border-end-end-radius: inherit;
   border-start-end-radius: inherit;
+}
+
+[type="checkbox"].toggle-xs {
+  --handleoffset: 0.5rem;
+  height: 1rem;
+  width: 1.5rem;
+}
+
+[type="checkbox"].toggle-sm {
+  --handleoffset: 0.75rem;
+  height: 1.25rem;
+  width: 2rem;
+}
+
+[type="checkbox"].toggle-md {
+  --handleoffset: 1.5rem;
+  height: 1.5rem;
+  width: 3rem;
+}
+
+[type="checkbox"].toggle-lg {
+  --handleoffset: 2rem;
+  height: 2rem;
+  width: 4rem;
 }
 
 .tooltip {
@@ -2612,12 +2819,20 @@ html {
   bottom: -2.5rem;
 }
 
+.bottom-2\.5 {
+  bottom: 0.625rem;
+}
+
 .bottom-20 {
   bottom: 5rem;
 }
 
 .bottom-5 {
   bottom: 1.25rem;
+}
+
+.end-2\.5 {
+  inset-inline-end: 0.625rem;
 }
 
 .left-0 {
@@ -2636,12 +2851,20 @@ html {
   right: 1.25rem;
 }
 
+.start-2\.5 {
+  inset-inline-start: 0.625rem;
+}
+
 .top-0 {
   top: 0px;
 }
 
 .top-2 {
   top: 0.5rem;
+}
+
+.top-3 {
+  top: 0.75rem;
 }
 
 .top-5 {
@@ -2670,6 +2893,10 @@ html {
 
 .z-\[1\] {
   z-index: 1;
+}
+
+.z-\[99\] {
+  z-index: 99;
 }
 
 .col-span-1 {
@@ -2812,6 +3039,18 @@ html {
   margin-top: 0.5rem;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
+.mb-2\.5 {
+  margin-bottom: 0.625rem;
+}
+
+.mt-0\.5 {
+  margin-top: 0.125rem;
+}
+
 .line-clamp-1 {
   overflow: hidden;
   display: -webkit-box;
@@ -2897,6 +3136,10 @@ html {
 
 .h-full {
   height: 100%;
+}
+
+.h-px {
+  height: 1px;
 }
 
 .max-h-64 {
@@ -2995,6 +3238,10 @@ html {
   width: 12rem;
 }
 
+.w-5 {
+  width: 1.25rem;
+}
+
 .w-52 {
   width: 13rem;
 }
@@ -3058,6 +3305,15 @@ html {
 
 .flex-grow {
   flex-grow: 1;
+}
+
+.rotate-90 {
+  --tw-rotate: 90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.transform {
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 @keyframes spin {
@@ -3385,6 +3641,15 @@ html {
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
 }
 
+.bg-base-content {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-bg-opacity)));
+}
+
+.bg-opacity-100 {
+  --tw-bg-opacity: 1;
+}
+
 .bg-opacity-15 {
   --tw-bg-opacity: 0.15;
 }
@@ -3556,6 +3821,10 @@ html {
 .py-px {
   padding-top: 1px;
   padding-bottom: 1px;
+}
+
+.pl-10 {
+  padding-left: 2.5rem;
 }
 
 .pl-12 {
@@ -3732,6 +4001,11 @@ html {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.text-neutral {
+  --tw-text-opacity: 1;
+  color: var(--fallback-n,oklch(var(--n)/var(--tw-text-opacity)));
+}
+
 .text-opacity-60 {
   --tw-text-opacity: 0.6;
 }
@@ -3786,6 +4060,12 @@ html {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-xl {
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -3798,6 +4078,10 @@ html {
 
 .grayscale {
   --tw-grayscale: grayscale(100%);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+.filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
@@ -3995,6 +4279,11 @@ html {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
+.hover\:border-base-200:hover {
+  --tw-border-opacity: 1;
+  border-color: var(--fallback-b2,oklch(var(--b2)/var(--tw-border-opacity)));
+}
+
 .hover\:border-emerald-500:hover {
   --tw-border-opacity: 1;
   border-color: rgb(16 185 129 / var(--tw-border-opacity));
@@ -4075,6 +4364,10 @@ html {
   --tw-bg-opacity: 0.3;
 }
 
+.hover\:bg-opacity-40:hover {
+  --tw-bg-opacity: 0.4;
+}
+
 .hover\:bg-opacity-45:hover {
   --tw-bg-opacity: 0.45;
 }
@@ -4118,6 +4411,12 @@ html {
 
 .hover\:opacity-75:hover {
   opacity: 0.75;
+}
+
+.hover\:shadow-lg:hover {
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
 .focus\:border-base-100:focus {
