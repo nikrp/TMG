@@ -2539,28 +2539,10 @@ html {
   border-start-end-radius: inherit;
 }
 
-[type="checkbox"].toggle-xs {
-  --handleoffset: 0.5rem;
-  height: 1rem;
-  width: 1.5rem;
-}
-
 [type="checkbox"].toggle-sm {
   --handleoffset: 0.75rem;
   height: 1.25rem;
   width: 2rem;
-}
-
-[type="checkbox"].toggle-md {
-  --handleoffset: 1.5rem;
-  height: 1.5rem;
-  width: 3rem;
-}
-
-[type="checkbox"].toggle-lg {
-  --handleoffset: 2rem;
-  height: 2rem;
-  width: 4rem;
 }
 
 .tooltip {
@@ -2983,6 +2965,10 @@ html {
   margin-bottom: 0.5rem;
 }
 
+.mb-2\.5 {
+  margin-bottom: 0.625rem;
+}
+
 .mb-20 {
   margin-bottom: 5rem;
 }
@@ -3035,6 +3021,10 @@ html {
   margin-right: 0.5rem;
 }
 
+.mt-0\.5 {
+  margin-top: 0.125rem;
+}
+
 .mt-2 {
   margin-top: 0.5rem;
 }
@@ -3043,12 +3033,8 @@ html {
   margin-top: 0.75rem;
 }
 
-.mb-2\.5 {
-  margin-bottom: 0.625rem;
-}
-
-.mt-0\.5 {
-  margin-top: 0.125rem;
+.mb-\[30px\] {
+  margin-bottom: 30px;
 }
 
 .line-clamp-1 {
@@ -3293,6 +3279,10 @@ html {
 
 .w-full {
   width: 100%;
+}
+
+.w-5\/6 {
+  width: 83.333333%;
 }
 
 .max-w-3xl {
@@ -3576,6 +3566,11 @@ html {
   background-color: var(--fallback-b3,oklch(var(--b3)/var(--tw-bg-opacity)));
 }
 
+.bg-base-content {
+  --tw-bg-opacity: 1;
+  background-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-bg-opacity)));
+}
+
 .bg-blue-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(96 165 250 / var(--tw-bg-opacity));
@@ -3639,11 +3634,6 @@ html {
 .bg-yellow-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
-}
-
-.bg-base-content {
-  --tw-bg-opacity: 1;
-  background-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-bg-opacity)));
 }
 
 .bg-opacity-100 {
@@ -3999,11 +3989,6 @@ html {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-neutral {
-  --tw-text-opacity: 1;
-  color: var(--fallback-n,oklch(var(--n)/var(--tw-text-opacity)));
 }
 
 .text-opacity-60 {
@@ -4525,8 +4510,17 @@ html {
     grid-column: span 2 / span 2;
   }
 
+  .\32xl\:mx-auto {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .\32xl\:w-1\/3 {
     width: 33.333333%;
+  }
+
+  .\32xl\:w-2\/3 {
+    width: 66.666667%;
   }
 
   .\32xl\:w-2\/6 {
