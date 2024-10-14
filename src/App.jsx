@@ -32,6 +32,7 @@ import Onboarding from './pages/Onboarding';
 import Profile from './pages/Profile';
 import ProfileProfile from './pages/ProfileProfile';
 import ProfileSettings from './pages/ProfileSettings';
+import TickerOverview from './pages/TickerOverview';
 
 export default function App() {
   const [todos, setTodos] = useState([])
@@ -167,7 +168,7 @@ export default function App() {
             <Route path='/pending-orders' element={<PendingOrders />} />
             <Route path='/transaction-notes' element={<TransactionNotes />} />
             <Route path='/ticker-search' element={<TickerSearch />} />
-            <Route path='/ticker-search/:symbol/overview' element={<TickerSearch />} />
+            <Route path='/ticker-search/:symbol/overview' element={<TickerOverview />} />
             <Route path='/news' element={<News />} />
             <Route path='/blog' element={<Blog />} />
             <Route path='/watchlists' element={<Watchlists />} />

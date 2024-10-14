@@ -24,7 +24,7 @@ export default function TickerSearch() {
         setIsFocused(true);
         intervalId.current = setInterval(() => {
           collectSuggestions();
-        }, 1000);
+        }, 500);
     };
 
     const handleBlur = () => {
@@ -37,7 +37,7 @@ export default function TickerSearch() {
             <div className={`shadow 2xl:w-3/6 xl:w-4/6 mx-auto`}>
                 <div className={`relative w-full mx-auto`}>
                     <GoSearch size={22} className={`text-white inset-3.5 absolute`}/>
-                    <input className={`px-4 pl-12 py-3 rounded-lg rounded-b-none bg-base-100 focus:outline-none focus:bg-opacity-75 w-full border border-neutral`} type="text" value={searchInput} onFocus={handleFocus} onBlur={handleBlur} onChange={(e) => setSearchInput(e.target.value)} placeholder="Symbol, eg. AAPL" />
+                    <input className={`px-4 pl-12 py-3 rounded-lg rounded-b-none bg-base-100 focus:outline-none focus:bg-opacity-75 w-full border border-neutral`} type="text" value={searchInput} onChange={(e) => {setSearchInput(e.target.value); collectSuggestions()}} placeholder="Symbol, eg. AAPL" />
                 </div>
                 {(
                     <div className={`w-full bg-base-200 border border-t-0 border-neutral h-64 overflow-y-auto max-h-64 mx-auto scrollbar-none`}>

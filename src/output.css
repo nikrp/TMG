@@ -2897,6 +2897,10 @@ html {
   grid-column: span 5 / span 5;
 }
 
+.col-span-7 {
+  grid-column: span 7 / span 7;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -2919,6 +2923,14 @@ html {
 
 .m-4 {
   margin: 1rem;
+}
+
+.m-2\.5 {
+  margin: 0.625rem;
+}
+
+.m-10 {
+  margin: 2.5rem;
 }
 
 .mx-1 {
@@ -3031,10 +3043,6 @@ html {
 
 .mt-3 {
   margin-top: 0.75rem;
-}
-
-.mb-\[30px\] {
-  margin-bottom: 30px;
 }
 
 .line-clamp-1 {
@@ -3281,8 +3289,24 @@ html {
   width: 100%;
 }
 
-.w-5\/6 {
-  width: 83.333333%;
+.w-7 {
+  width: 1.75rem;
+}
+
+.w-14 {
+  width: 3.5rem;
+}
+
+.w-40 {
+  width: 10rem;
+}
+
+.w-56 {
+  width: 14rem;
+}
+
+.w-11 {
+  width: 2.75rem;
 }
 
 .max-w-3xl {
@@ -3330,6 +3354,10 @@ html {
 
 .grid-cols-3 {
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-cols-12 {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
 .flex-row {
@@ -3738,6 +3766,10 @@ html {
   padding: 1.25rem;
 }
 
+.p-2\.5 {
+  padding: 0.625rem;
+}
+
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -3811,6 +3843,16 @@ html {
 .py-px {
   padding-top: 1px;
   padding-bottom: 1px;
+}
+
+.py-2\.5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .pl-10 {
@@ -4440,6 +4482,11 @@ html {
 .disabled\:text-white:disabled {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.group:hover .group-hover\:rotate-90 {
+  --tw-rotate: 90deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .group:hover .group-hover\:scale-100 {
