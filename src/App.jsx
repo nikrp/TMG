@@ -208,11 +208,11 @@ export default function App() {
       <div className={`w-full bg-base-300 border-t border-t-neutral py-10 flex items-center justify-center`}>
         <div className={`w-[70%] flex`}>
             <div className={`w-[40%]`}>
-                <h1 className={`text-xl font-medium flex items-center gap-2 text-center text-white mb-2`}><div className={`bg-emerald-600 rounded-full`}><RiStockLine size={21} color='white' className={`m-2`} /></div>The Market Game</h1>
-                <p className={`text-base-content text-lg text-opacity-60 mb-2`}>
+                <h1 className={`text-xl font-medium flex items-center gap-2 text-center text-white mb-3.5`}><div className={`bg-emerald-600 rounded-full`}><RiStockLine size={21} color='white' className={`m-2`} /></div>The Market Game</h1>
+                <p className={`text-base-content text-lg text-opacity-60 mb-3.5`}>
                     Simplifying stock trading and empowering informed decisions.
                 </p>
-                <div className={`flex items-center gap-3`}>
+                <div className={`flex items-center gap-3 mb-3.5`}>
                     <span className={`border border-emerald-500 rounded-sm hover:bg-emerald-500 hover:bg-opacity-25 transition-all duration-200 ease-in-out cursor-pointer`}><ImFacebook2 size={18} className={`m-2 text-emerald-500`} /></span>
                     <span className={`border border-emerald-500 rounded-sm hover:bg-emerald-500 hover:bg-opacity-25 transition-all duration-200 ease-in-out cursor-pointer`}><RiInstagramFill size={18} className={`m-2 text-emerald-500`} /></span>
                     <span className={`border border-emerald-500 rounded-sm hover:bg-emerald-500 hover:bg-opacity-25 transition-all duration-200 ease-in-out cursor-pointer`}><RiTwitterXFill size={18} className={`m-2 text-emerald-500`} /></span>
@@ -222,23 +222,23 @@ export default function App() {
             <div className={`w-[60%] flex justify-evenly`}>
                 <div>
                     <p className={`text-lg text-base-content text-opacity-95 tracking-wide mb-3`}>RESOURCES</p>
-                    <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Blog</p>
-                    <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Tutorials</p>
-                    <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Documentation</p>
-                    <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70`}>FAQ</p>
+                    <p className={`text-base-content cursor-pointer hover:text-emerald-500 transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Blog</p>
+                    <p className={`text-base-content cursor-pointer hover:text-emerald-500 transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Tutorials</p>
+                    <p className={`text-base-content cursor-pointer hover:text-emerald-500 transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Documentation</p>
+                    <p className={`text-base-content cursor-pointer hover:text-emerald-500 transition-all duration-200 ease-in-out text-opacity-70`}>FAQ</p>
                 </div>
                 <div>
                     <p className={`text-lg text-base-content text-opacity-95 tracking-wide mb-3`}>LEGAL</p>
-                    <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Terms of Service</p>
-                    <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Privacy Policy</p>
-                    <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Security</p>
-                    <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70`}>Cookie Policy</p>
+                    <p className={`text-base-content cursor-pointer hover:text-emerald-500 transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Terms of Service</p>
+                    <p className={`text-base-content cursor-pointer hover:text-emerald-500 transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Privacy Policy</p>
+                    <p className={`text-base-content cursor-pointer hover:text-emerald-500 transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Security</p>
+                    <p className={`text-base-content cursor-pointer hover:text-emerald-500 transition-all duration-200 ease-in-out text-opacity-70`}>Cookie Policy</p>
                 </div>
                 <div>
                     <p className={`text-lg text-base-content text-opacity-95 tracking-wide mb-3`}>COMMUNITY</p>
-                    <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Forums</p>
-                    <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Feedback</p>
-                    <p className={`text-base-content cursor-pointer hover:text-white transition-all duration-200 ease-in-out text-opacity-70`}>Events</p>
+                    <p className={`text-base-content cursor-pointer hover:text-emerald-500 transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Forums</p>
+                    <p className={`text-base-content cursor-pointer hover:text-emerald-500 transition-all duration-200 ease-in-out text-opacity-70 mb-3`}>Feedback</p>
+                    <p className={`text-base-content cursor-pointer hover:text-emerald-500 transition-all duration-200 ease-in-out text-opacity-70`}>Events</p>
                 </div>
             </div>
         </div>
