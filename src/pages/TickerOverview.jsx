@@ -287,6 +287,16 @@ const data = [
     }
 ];
 
+const CustomTick = (props) => {
+    const { x, y, payload, index } = props;
+  
+    return (
+      <text x={x} y={y + 10} textAnchor="middle" className={`rotate-[65] text-white`}>
+        {payload.value}
+      </text>
+    );
+  };
+
 export default function TickerOverview() {
     const location = useLocation();
     const choices = ["Total Equity", "Total Longs", "Total Shorts", "Cash"]
@@ -299,17 +309,22 @@ export default function TickerOverview() {
     const [tickerDetails, setTickerDetails] = useState(undefined);
     const [financials, setFinancials] = useState(undefined);
     const [fiveDayData, setFiveDayData] = useState(undefined);
+    const [oneDayData, setOneDayData] = useState(undefined);
     const [currentMultiplier, setCurrentMutiplier] = useState("1D");
 
     useEffect(() => {
-        setMinValue(Math.min(...data.map(d => graphData === 0 ? d.te : graphData === 1 ? d.tl : graphData === 2 ? d.ts : d.c)) - (Math.min(...data.map(d => graphData === 0 ? d.te : graphData === 1 ? d.tl : graphData === 2 ? d.ts : d.c)) === 0 ? 0 : 1));
-        setMaxValue(Math.max(...data.map(d => graphData === 0 ? d.te : graphData === 1 ? d.tl : graphData === 2 ? d.ts : d.c)) + 1);
-    }, [graphData]);
+        if (oneDayData && fiveDayData && tickerData) {
+            if (currentMultiplier === "1D") {
+                setMinValue((oneDayData.sort((a, b) => a.close - b.close)[0].close - 4.5).toFixed(2));
+                setMaxValue((oneDayData.sort((a, b) => b.close - a.close)[0].close + 4.5).toFixed(2));
+            }
+        }
+    }, [currentMultiplier]);
 
     useEffect(() => {
         console.log(currentMultiplier)
         async function collectTickerData() {
-            const response = await axios.get(`https://api.polygon.io/v2/aggs/ticker/${location.pathname.split(`/`)[2].toUpperCase()}/range/1/day/2019-10-12/2024-10-12?adjusted=true&sort=desc&apiKey=${import.meta.env.VITE_API_TOKEN}`);
+            const response = await axios.get(`https://api.polygon.io/v2/aggs/ticker/${location.pathname.split(`/`)[2].toUpperCase()}/range/1/day/2019-10-12/2024-10-12?adjusted=true&apiKey=${import.meta.env.VITE_API_TOKEN}`);
             const response2 = await axios.get(`https://api.polygon.io/v3/reference/tickers/${location.pathname.split(`/`)[2].toUpperCase()}?apiKey=${import.meta.env.VITE_API_TOKEN}`);
             const response3 = await axios.get(`https://api.polygon.io/vX/reference/financials?ticker=${location.pathname.split(`/`)[2].toUpperCase()}&apiKey=${import.meta.env.VITE_API_TOKEN}`);
             const response4 = await axios.get(`https://api.polygon.io/v2/aggs/ticker/${location.pathname.split(`/`)[2].toUpperCase()}/range/1/hour/2024-10-10/2024-10-15?adjusted=true&apiKey=${import.meta.env.VITE_API_TOKEN}`)
@@ -322,7 +337,14 @@ export default function TickerOverview() {
             const cutoffTimestamp = latestEntry - fiveDaysInMillis;
 
             setFiveDayData(formatDataForOneChart(response4.data.results).filter(entry => entry.timestamp <= cutoffTimestamp));
-            console.log(formatDataForOneChart(response4.data.results).filter(entry => entry.timestamp <= cutoffTimestamp));
+
+            const oneDayInMillis = 1 * 24 * 60 * 60 * 1000;
+            const latestEntryOne = formatDataForOneChart(response4.data.results)[response4.data.results.length - 1].timestamp;
+            const cutoffTimestampOne = latestEntryOne - oneDayInMillis;
+
+            setOneDayData(formatDataForOneChart(response4.data.results).filter(entry => entry.timestamp <= cutoffTimestampOne).slice());
+
+            console.log("ONEDAY:", formatDataForOneChart(response4.data.results).filter(entry => entry.timestamp <= cutoffTimestampOne), "FIVEDAY:", formatDataForOneChart(response4.data.results).filter(entry => entry.timestamp <= cutoffTimestamp), "OTHERDAYS:", formatDataForChart(response.data.results));
         }
 
         collectTickerData();
@@ -348,9 +370,11 @@ export default function TickerOverview() {
     }
 
     const formatDataForChart = (data) => {
-        console.log("IN THE FORMATTING:", data)
         return data.map(item => ({
-            name: new Date(item.t).toLocaleDateString(),  // Format timestamp to a readable date
+            dateAndTime: [
+                formatDate(item.t),  // Use the custom formatDate function
+                new Date(item.t).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }) // Format timestamp to time
+            ],  // Format timestamp to a readable date
             open: item.o,
             high: item.h,
             low: item.l,
@@ -373,7 +397,6 @@ export default function TickerOverview() {
     };
     
     const formatDataForOneChart = (data) => {
-        console.log("IN THE FORMATTING:", data);
         return data.map(item => ({
             dateAndTime: [
                 formatDate(item.t),  // Use the custom formatDate function
@@ -389,7 +412,7 @@ export default function TickerOverview() {
     };
 
     return (
-        tickerData !== undefined && tickerDetails !== undefined && financials !== undefined && fiveDayData !== undefined ? (
+        tickerData !== undefined && tickerDetails !== undefined && financials !== undefined && fiveDayData !== undefined && oneDayData !== undefined ? (
             <div data-theme="dark" className={`flex-1 bg-base-300 p-10`}>
                 <div className={`flex items-center justify-between mb-8`}>
                     <div className={`flex items-center gap-4`}>
@@ -421,20 +444,20 @@ export default function TickerOverview() {
                                 <p className={`text-base-content mb-2`}>Volume</p>
                                 <p className={`text-white font-medium text-xl`}>{formatNumber(tickerData[0].volume)} <span className={`font-normal text-base-content`}>USD</span></p>
                             </div>
-                            <div className={`col-span-12 rounded-md border border-neutral bg-base-200 p-3 shadow-xl`}>
-                                <div className={`py-1.5 px-1.5 rounded-lg border border-neutral bg-base-300 shadow-sm flex items-center gap-2 text-base-content w-fit mx-auto mb-2.5`}>
-                                    <p onClick={handleMultiplierClick} data-multiplier="1D" className={`px-3 py-1 rounded-lg border ${currentMultiplier === "1D" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>1D</p>
-                                    <p onClick={handleMultiplierClick} data-multiplier="5D" className={`px-3 py-1 rounded-lg border ${currentMultiplier === "5D" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>5D</p>
-                                    <p onClick={handleMultiplierClick} data-multiplier="3M" className={`px-3 py-1 rounded-lg border ${currentMultiplier === "3M" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>3M</p>
-                                    <p onClick={handleMultiplierClick} data-multiplier="6M" className={`px-3 py-1 rounded-lg border ${currentMultiplier === "6M" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>6M</p>
-                                    <p onClick={handleMultiplierClick} data-multiplier="1Y" className={`px-3 py-1 rounded-lg border ${currentMultiplier === "1Y" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>1Y</p>
-                                    <p onClick={handleMultiplierClick} data-multiplier="YTD" className={`px-3 py-1 rounded-lg border ${currentMultiplier === "YTD" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>YTD</p>
+                            <div className={`col-span-12 rounded-md border border-neutral bg-base-200 p-3 shadow-xl w-full h-full`}>
+                                <div className={`py-1 px-1 rounded-lg border border-neutral bg-base-300 shadow-sm flex items-center gap-2 text-base-content w-fit mx-auto mb-2.5`}>
+                                    <p onClick={handleMultiplierClick} data-multiplier="1D" className={`px-2.5 py-0.5 rounded-lg border ${currentMultiplier === "1D" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>1D</p>
+                                    <p onClick={handleMultiplierClick} data-multiplier="5D" className={`px-2.5 py-0.5 rounded-lg border ${currentMultiplier === "5D" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>5D</p>
+                                    <p onClick={handleMultiplierClick} data-multiplier="3M" className={`px-2.5 py-0.5 rounded-lg border ${currentMultiplier === "3M" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>3M</p>
+                                    <p onClick={handleMultiplierClick} data-multiplier="6M" className={`px-2.5 py-0.5 rounded-lg border ${currentMultiplier === "6M" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>6M</p>
+                                    <p onClick={handleMultiplierClick} data-multiplier="1Y" className={`px-2.5 py-0.5 rounded-lg border ${currentMultiplier === "1Y" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>1Y</p>
+                                    <p onClick={handleMultiplierClick} data-multiplier="YTD" className={`px-2.5 py-0.5 rounded-lg border ${currentMultiplier === "YTD" ? `border-neutral bg-base-200` : `border-base-300 bg-base-300`} hover:bg-base-100 cursor-pointer transition-all duration-200 ease-in-out`}>YTD</p>
                                 </div>
                                 <ResponsiveContainer width="99%" height={200} className={`mx-auto`}>
-                                    <AreaChart width={600} height={300} data={currentMultiplier === "1D" ? fiveDayData : tickerData}>
-                                        <XAxis dataKey="dateAndTime[1]" tick={{ fill: '#FFFFFF' }} tickMargin={10} />
-                                        <YAxis width={50} tick={{ fill: '#FFFFFF' }} tickMargin={10} tickFormatter={(value) => `$${value.toLocaleString()}`} />
-                                        <Area type="monotone" dataKey="close" stroke={dataColorChoices[currentMultiplier === "1D" ? fiveDayData[0].open < fiveDayData[fiveDayData.length - 1].close ? 0 : 2 : tickerData[0].open < tickerData[tickerData.length - 1].close ? 0 : 2]} strokeWidth={1} fill={dataColorChoices[currentMultiplier === "1D" ? fiveDayData[0].open < fiveDayData[fiveDayData.length - 1].close ? 0 : 2 : tickerData[0].open < tickerData[tickerData.length - 1].close ? 0 : 2]} fillOpacity={0.5} />
+                                    <AreaChart width={600} height={300} data={currentMultiplier === "1D" ? oneDayData : currentMultiplier === "5D" ? fiveDayData : tickerData}>
+                                        <XAxis dataKey="dateAndTime[0]" tick={<CustomTick />} tickMargin={10} />
+                                        <YAxis domain={[minValue, maxValue]} width={75} tick={{ fill: '#FFFFFF' }} tickMargin={10} tickFormatter={(value) => `$${value.toLocaleString()}`} />
+                                        <Area type="monotone" dataKey="close" fill={dataColorChoices[minValue > maxValue ? 2 : 0]} stroke={dataColorChoices[minValue > maxValue ? 2 : 0]} fillOpacity={0.5} />
                                         <Tooltip cursor={false} content={(props) => {
                                             console.log(props.payload[0]);
                                             return (props.payload.length > 0 ? (
@@ -450,9 +473,11 @@ export default function TickerOverview() {
                             </div>
                         </div>
                     </div>
-                    <div className={`col-span-4 rounded-md border border-neutral bg-base-200 p-3 shadow-xl h-fit`}>
-                        <p className={`font-medium text-white text-lg`}>Stock Details</p>
-                        <div className={`h-px rounded-full bg-neutral w-full my-3.5`}></div>
+                    <div className={`col-span-4 rounded-md border border-neutral bg-base-200 p-3 shadow-xl h-full flex flex-col justify-between`}>
+                        <div className={`mb-3.5`}>
+                            <p className={`font-medium text-white text-lg`}>Stock Details</p>
+                            <div className={`h-px rounded-full bg-neutral w-full mt-3`}></div>
+                        </div>
                         <p className={`flex items-center justify-between text-base-content mb-5`}>PREVIOUS CLOSE <span className={`text-white text-opacity-100 font-medium`}>${tickerData[1].close}</span></p>
                         <p className={`flex items-center justify-between text-base-content mb-5`}>DAY RANGE <span className={`text-white text-opacity-100 font-medium`}>${tickerData[0].low} - ${tickerData[0].high}</span></p>
                         <p className={`flex items-center justify-between text-base-content mb-5`}>YEAR RANGE <span className={`text-white text-opacity-100 font-medium`}>${tickerData[364].low} - ${tickerData[0].high}</span></p>

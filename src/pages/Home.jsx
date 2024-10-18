@@ -11,6 +11,7 @@ import { FiClock } from "react-icons/fi";
 import { YAxis, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AccountSummaryPreview from '../components/AccountSummaryPreview';
 
 const data = [
     {
@@ -191,6 +192,9 @@ export default function Home() {
                         </ResponsiveContainer>
                     </motion.div>
                 </motion.div>
+            </div>
+            <div className={`xl:w-5/6 2xl:w-4/6 mx-auto flex mb-32 rounded-xl overflow-hidden shadow-2xl shadow-neutral`}>
+                <AccountSummaryPreview showFullPreview={false} />
             </div>
             <div className={`xl:w-4/6 2xl:w-3/6 mx-auto flex items-center justify-center gap-5 overflow-hidden mb-32`}>
                 {/* Left Arrow */}
