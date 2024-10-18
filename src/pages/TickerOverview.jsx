@@ -455,14 +455,14 @@ export default function TickerOverview() {
                                 </div>
                                 <ResponsiveContainer width="99%" height={200} className={`mx-auto`}>
                                     <AreaChart width={600} height={300} data={currentMultiplier === "1D" ? oneDayData : currentMultiplier === "5D" ? fiveDayData : tickerData}>
-                                        <XAxis dataKey="dateAndTime[0]" tick={<CustomTick />} tickMargin={10} />
+                                        <XAxis dataKey="dateAndTime[0]" tick={{ fill: "#FFFFFF" }} tickMargin={10} />
                                         <YAxis domain={[minValue, maxValue]} width={75} tick={{ fill: '#FFFFFF' }} tickMargin={10} tickFormatter={(value) => `$${value.toLocaleString()}`} />
                                         <Area type="monotone" dataKey="close" fill={dataColorChoices[minValue > maxValue ? 2 : 0]} stroke={dataColorChoices[minValue > maxValue ? 2 : 0]} fillOpacity={0.5} />
                                         <Tooltip cursor={false} content={(props) => {
                                             console.log(props.payload[0]);
                                             return (props.payload.length > 0 ? (
                                                 <div className={`rounded-lg bg-neutral p-2 bg-opacity-80`}>
-                                                    <p className={`text-sm mb-1`}>{props.label} UTC-7</p>
+                                                    <p className={`text-sm mb-1`}>{props.payload[0].payload.dateAndTime[1]} UTC-7</p>
                                                     <p className={`text-sm mb-1`}>{props.payload[0].payload.dateAndTime[0]}</p>
                                                     <p style={{ color: props.payload[0].color }}>Price: ${Number(props.payload[0].value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                                                 </div>) : (<div className={`hidden fixed top-0 left-0`}></div>)
