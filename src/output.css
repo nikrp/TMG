@@ -2913,6 +2913,10 @@ html {
   grid-column: span 8 / span 8;
 }
 
+.col-span-6 {
+  grid-column: span 6 / span 6;
+}
+
 .m-0 {
   margin: 0px;
 }
@@ -3305,6 +3309,14 @@ html {
   width: 100%;
 }
 
+.w-\[49\%\] {
+  width: 49%;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
 .max-w-3xl {
   max-width: 48rem;
 }
@@ -3431,6 +3443,10 @@ html {
 
 .gap-8 {
   gap: 2rem;
+}
+
+.gap-0\.5 {
+  gap: 0.125rem;
 }
 
 .overflow-hidden {
@@ -3679,6 +3695,11 @@ html {
   background-color: rgb(234 179 8 / var(--tw-bg-opacity));
 }
 
+.bg-gray-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-100 {
   --tw-bg-opacity: 1;
 }
@@ -3779,6 +3800,10 @@ html {
 
 .p-5 {
   padding: 1.25rem;
+}
+
+.p-2\.5 {
+  padding: 0.625rem;
 }
 
 .px-1 {
@@ -3966,6 +3991,10 @@ html {
 
 .font-thin {
   font-weight: 100;
+}
+
+.uppercase {
+  text-transform: uppercase;
 }
 
 .leading-relaxed {
@@ -4481,6 +4510,10 @@ html {
 
 .hover\:underline-offset-2:hover {
   text-underline-offset: 2px;
+}
+
+.hover\:underline-offset-1:hover {
+  text-underline-offset: 1px;
 }
 
 .hover\:opacity-75:hover {
