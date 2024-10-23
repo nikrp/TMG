@@ -539,6 +539,7 @@ export default function AccountSummary() {
     const [currentArticle, setCurrentArticle] = React.useState("");
     const [newsInsights, setNewsInsights] = React.useState([]);
     const [keywords, setKeywords] = React.useState([]);
+    const [equityReload, setEquityReload] = React.useState(60);
 
     React.useEffect(() => {
         setMinValue(Math.min(...data.map(d => graphData === 0 ? d.te : graphData === 1 ? d.tl : graphData === 2 ? d.ts : d.c)) - (Math.min(...data.map(d => graphData === 0 ? d.te : graphData === 1 ? d.tl : graphData === 2 ? d.ts : d.c)) === 0 ? 0 : 1));
@@ -555,6 +556,20 @@ export default function AccountSummary() {
             setMarketNews(response.data);
         }
 
+        setInterval(() => {
+            setEquityReload(prevEquityReload => {
+                // Log the previous state value
+                
+                if (prevEquityReload === 1) {
+                    return 0; // Need to reload equity positions.
+                } else if (prevEquityReload === 0) {
+                    return 60;
+                } else {
+                    return prevEquityReload - 1;
+                }
+            });
+        }, 1050);
+              
         getNews();
     }, []);
 
@@ -580,7 +595,6 @@ export default function AccountSummary() {
 
     const handleCopyClick = () => {
         setCopied(true);
-        console.log(currentArticle)
         navigator.clipboard.writeText(currentArticle);
 
         // Switch back to IoCopyOutline after 2 seconds
@@ -620,7 +634,7 @@ export default function AccountSummary() {
                 <div className={`col-span-1 bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
                     <p className={`text-2xl font-semibold mb-5 flex justify-between`}>
                         <span>Portfolio Summary</span>
-                        <div className="dropdown">
+                        <div className="dropdown dropdown-left">
                             <div tabIndex={0} role="button" className="btn bg-neutral m-1 flex items-center gap-1">{choices[graphData]} <FaAngleDown size={20} color="white" /></div>
                             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                                 <li onClick={() => setGraphData(0)}><a>Total Equity</a></li>
@@ -636,7 +650,6 @@ export default function AccountSummary() {
                             <YAxis width={100} domain={[minValue, maxValue]} tick={{ fill: '#FFFFFF' }} tickMargin={10} tickFormatter={(value) => `$${value.toLocaleString()}`} />
                             <Area type="monotone" dataKey={choices[graphData]} stroke={dataColorChoices[graphData]} strokeWidth={1} fill={dataColorChoices[graphData]} fillOpacity={0.5} />
                             <Tooltip cursor={false} content={(props) => {
-                                console.log(props);
                                 return ( props.payload.length > 0 ? (
                                     <div className={`rounded-lg bg-neutral p-2 bg-opacity-80`}>
                                         <p className={`text-sm mb-1`}>{props.label}</p>
@@ -669,9 +682,9 @@ export default function AccountSummary() {
             </div>
             <div className={`grid grid-cols-3 gap-7 mb-7`}>
                 <div className={`2xl:col-span-2 xl:col-span-3 bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
-                    <p className={`text-2xl font-semibold mb-5 flex items-center justify-between`}>Equity Positions</p>
+                    <p className={`text-2xl font-semibold mb-5 flex items-center justify-between`}>Equity Positions <span data-tip={`This is a countdown until the real-time stock price data refreshes.`} className={`countdown cursor-pointer tooltip-left tooltip font-mono text-2xl font-normal`}><span style={{"--value": equityReload}}></span></span></p>
                     <div className="overflow-x-auto h-fit">
-                        <table className="table table-zebrah-fit">
+                        <table className="table table-zebra h-fit">
                             <thead>
                                 <tr>
                                     <th>Ticker</th>
@@ -721,7 +734,7 @@ export default function AccountSummary() {
                 <div className={`2xl:col-span-1 xl:col-span-3 bg-base-200 border border-neutral text-white p-5 rounded-lg`}>
                     <p className={`text-2xl font-semibold mb-5 flex items-center justify-between h-fit`}>Watchlists<span className={`flex items-center gap-2 font-normal text-base cursor-pointer hover:bg-gray-200 hover:bg-opacity-15 transition-all duration-200 ease-in-out px-2 py-1 rounded-lg`}>See All <FaArrowRightLong size={20} color="white" /></span></p>
                     <div className="flex-grow overflow-y-auto min-h-0">
-                        <div className={`flex flex-col justify-between`}>
+                        <div className={`flex flex-col justify-between gap-1`}>
                             {watchlist.map((watched, index) => {
                                 const minMaxValues = watched.graphData.reduce(
                                     (acc, dataPoint) => {
@@ -739,7 +752,7 @@ export default function AccountSummary() {
 
                                 return (
                                     <>
-                                        <div onClick={() => console.log("OVERALL")} key={index} className={`grid grid-cols-10 mt-2 cursor-pointer transition-all duration-200 ease-in-out`}>
+                                        <div key={index} className={`grid grid-cols-10 mt-2 cursor-pointer transition-all duration-200 ease-in-out hover:bg-gray-200 hover:bg-opacity-5 px-4 py-2 rounded-lg`}>
                                             <div className={`col-span-3 flex items-center gap-1.5`}>
                                                 <img src={watched.logo} className={`w-8 h-8 rounded-full`} />
                                                 <div>
@@ -749,7 +762,7 @@ export default function AccountSummary() {
                                             </div>
                                             <div className={`col-span-5 flex justify-center items-center`}>
                                                 <ResponsiveContainer className={`2xl:w-3/4 xl:w-full`} height={50}>
-                                                    <AreaChart data={watched.graphData} style={{ cursor: 'pointer' }} onClick={() => console.log("CHART")}>
+                                                    <AreaChart data={watched.graphData} style={{ cursor: 'pointer' }}>
                                                     <defs>
                                                         <linearGradient id="greenC" x1="0" y1="0" x2="0" y2="1">
                                                             <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8}/>
@@ -770,7 +783,6 @@ export default function AccountSummary() {
                                                 <p className={`text-base-content flex items-center gap-1 justify-end ${watched.percentChange < 0 ? `text-red-500` : `text-green-500`}`}>{watched.percentChange < 0 ? <FaCircleArrowDown size={15} className={`fill-red-500`} /> : <FaCircleArrowUp size={15} className={`fill-green-500`} />}{watched.percentChange}%</p>
                                             </div>
                                         </div>
-                                        <div className={`h-[0.25px] bg-gray-400 mt-2 rounded-full`}></div>
                                     </>
                                 )
                             })}

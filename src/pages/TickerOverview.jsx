@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom"
-import { TbLoader, TbPlus } from "react-icons/tb";
+import { TbLoader2, TbPlus } from "react-icons/tb";
 import { FaEllipsisVertical } from "react-icons/fa6";
 import { XAxis, YAxis, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts';
 import { IoCopyOutline, IoCheckmark } from "react-icons/io5";
@@ -12,290 +12,6 @@ import x from '../assets/x.svg'
 import instagram from '../assets/instagram.svg'
 import facebook from '../assets/facebook.svg'
 import axios from "axios";
-
-
-const data = [
-    {
-        name: "Aug 1",
-        "Total Equity": 99980.12,
-        "Total Longs": 0,
-        "Total Shorts": 0,
-        Cash: 99980.12,
-        amt: 150000
-    },
-    {
-        name: "Aug 2",
-        "Total Equity": 100005.34,
-        "Total Longs": 0,
-        "Total Shorts": 0,
-        Cash: 100005.34,
-        amt: 150000
-    },
-    {
-        name: "Aug 5",
-        "Total Equity": 99975.21,
-        "Total Longs": 0,
-        "Total Shorts": 0,
-        Cash: 99975.21,
-        amt: 150000
-    },
-    {
-        name: "Aug 6",
-        "Total Equity": 99990.48,
-        "Total Longs": 2500.56,
-        "Total Shorts": 0,
-        Cash: 97489.92,
-        amt: 150000
-    },
-    {
-        name: "Aug 7",
-        "Total Equity": 100015.60,
-        "Total Longs": 2523.90,
-        "Total Shorts": 0,
-        Cash: 97491.70,
-        amt: 150000
-    },
-    {
-        name: "Aug 8",
-        "Total Equity": 100025.20,
-        "Total Longs": 2500.34,
-        "Total Shorts": 0,
-        Cash: 97489.66,
-        amt: 150000
-    },
-    {
-        name: "Aug 9",
-        "Total Equity": 99985.45,
-        "Total Longs": 2487.23,
-        "Total Shorts": -500,
-        Cash: 97998.22,
-        amt: 150000
-    },
-    {
-        name: "Aug 12",
-        "Total Equity": 99995.67,
-        "Total Longs": 2480.65,
-        "Total Shorts": -750,
-        Cash: 98265.02,
-        amt: 150000
-    },
-    {
-        name: "Aug 13",
-        "Total Equity": 100005.75,
-        "Total Longs": 2475.23,
-        "Total Shorts": -800,
-        Cash: 98230.52,
-        amt: 150000
-    },
-    {
-        name: "Aug 14",
-        "Total Equity": 100035.88,
-        "Total Longs": 2450.45,
-        "Total Shorts": -1200,
-        Cash: 98260.43,
-        amt: 150000
-    },
-    {
-        name: "Aug 15",
-        "Total Equity": 99980.32,
-        "Total Longs": 2498.12,
-        "Total Shorts": -1150,
-        Cash: 98432.20,
-        amt: 150000
-    },
-    {
-        name: "Aug 16",
-        "Total Equity": 100005.14,
-        "Total Longs": 2482.30,
-        "Total Shorts": -800,
-        Cash: 98100.84,
-        amt: 150000
-    },
-    {
-        name: "Aug 19",
-        "Total Equity": 100015.44,
-        "Total Longs": 2510.90,
-        "Total Shorts": -800,
-        Cash: 98090.54,
-        amt: 150000
-    },
-    {
-        name: "Aug 20",
-        "Total Equity": 100010.70,
-        "Total Longs": 2500.45,
-        "Total Shorts": -1300,
-        Cash: 98050.25,
-        amt: 150000
-    },
-    {
-        name: "Aug 21",
-        "Total Equity": 100030.89,
-        "Total Longs": 2490.34,
-        "Total Shorts": -1100,
-        Cash: 98250.55,
-        amt: 150000
-    },
-    {
-        name: "Aug 22",
-        "Total Equity": 99990.88,
-        "Total Longs": 2450.12,
-        "Total Shorts": -1600,
-        Cash: 98210.76,
-        amt: 150000
-    },
-    {
-        name: "Aug 23",
-        "Total Equity": 100010.50,
-        "Total Longs": 2440.90,
-        "Total Shorts": -1250,
-        Cash: 98250.60,
-        amt: 150000
-    },
-    {
-        name: "Aug 26",
-        "Total Equity": 99950.80,
-        "Total Longs": 2415.23,
-        "Total Shorts": -1450,
-        Cash: 98085.12,
-        amt: 150000
-    },
-    {
-        name: "Aug 27",
-        "Total Equity": 100020.20,
-        "Total Longs": 2390.56,
-        "Total Shorts": -1000,
-        Cash: 98250.12,
-        amt: 150000
-    },
-    {
-        name: "Aug 28",
-        "Total Equity": 100035.90,
-        "Total Longs": 2385.12,
-        "Total Shorts": -1500,
-        Cash: 98450.78,
-        amt: 150000
-    },
-    {
-        name: "Aug 29",
-        "Total Equity": 100045.10,
-        "Total Longs": 2350.60,
-        "Total Shorts": -1200,
-        Cash: 98555.20,
-        amt: 150000
-    },
-    {
-        name: "Aug 30",
-        "Total Equity": 99985.20,
-        "Total Longs": 2325.45,
-        "Total Shorts": -1500,
-        Cash: 98600.00,
-        amt: 150000
-    },
-    {
-        name: "Sep 3",
-        "Total Equity": 100005.10,
-        "Total Longs": 2345.90,
-        "Total Shorts": -1000,
-        Cash: 98659.20,
-        amt: 150000
-    },
-    {
-        name: "Sep 4",
-        "Total Equity": 99950.34,
-        "Total Longs": 2385.10,
-        "Total Shorts": -1200,
-        Cash: 98565.12,
-        amt: 150000
-    },
-    {
-        name: "Sep 5",
-        "Total Equity": 100020.89,
-        "Total Longs": 2360.30,
-        "Total Shorts": -800,
-        Cash: 98750.20,
-        amt: 150000
-    },
-    {
-        name: "Sep 6",
-        "Total Equity": 99980.45,
-        "Total Longs": 2340.50,
-        "Total Shorts": -1100,
-        Cash: 98655.95,
-        amt: 150000
-    },
-    {
-        name: "Sep 9",
-        "Total Equity": 100045.23,
-        "Total Longs": 2320.90,
-        "Total Shorts": -900,
-        Cash: 98725.33,
-        amt: 150000
-    },
-    {
-        name: "Sep 10",
-        "Total Equity": 100030.75,
-        "Total Longs": 2300.12,
-        "Total Shorts": -1200,
-        Cash: 98715.63,
-        amt: 150000
-    },
-    {
-        name: "Sep 11",
-        "Total Equity": 99990.12,
-        "Total Longs": 2290.50,
-        "Total Shorts": -1300,
-        Cash: 98675.40,
-        amt: 150000
-    },
-    {
-        name: "Sep 12",
-        "Total Equity": 100045.84,
-        "Total Longs": 0,
-        "Total Shorts": 0,
-        Cash: 100045.84,
-        amt: 150000 
-    },
-    {
-        name: "Sep 13",
-        "Total Equity": 100045.84,
-        "Total Longs": 0,
-        "Total Shorts": 0,
-        Cash: 100045.84,
-        amt: 150000
-    },
-    {
-        name: "Sep 16",
-        "Total Equity": 100055.53,
-        "Total Longs": 5165.7,
-        "Total Shorts": 0,
-        Cash: 100045.84,
-        amt: 150000
-    },
-    {
-        name: "Sep 17",
-        "Total Equity": 100063.33,
-        "Total Longs": 5173.5,
-        "Total Shorts": 0,
-        Cash: 94889.3,
-        amt: 150000
-    },
-    {
-        name: "Sep 18",
-        "Total Equity": 100065.73,
-        "Total Longs": 5175.9,
-        "Total Shorts": 0,
-        Cash: 94889.3,
-        amt: 150000
-    },
-    {
-        name: "Sep 19",
-        "Total Equity": 100038.60,
-        "Total Longs": 5159.1,
-        "Total Shorts": -11346.3,
-        Cash: 94879.5,
-        amt: 150000
-    }
-];
 
 const CustomTick = (props) => {
     const { x, y, payload, index } = props;
@@ -350,7 +66,7 @@ export default function TickerOverview() {
             setTickerData(formatDataForChart(response.data.results));
             setTickerDetails(response2.data.results);
             setFinancials(response3.data.results);
-            setRelatedCompanies(response5.data.results ? response5.data.results.slice(0, 6) : []);
+            setRelatedCompanies(response5.data.results ? response5.data.results.slice(0, 8) : []);
 
             const fiveDaysInMillis = 5 * 24 * 60 * 60 * 1000;
             const latestEntry = formatDataForOneChart(response4.data.results)[response4.data.results.length - 1].timestamp;
@@ -554,7 +270,7 @@ export default function TickerOverview() {
                         </div>
                         <div className={`flex flex-col gap-2`}>
                             {tickerNews ? (
-                                tickerNews.slice(0, 5).map((result, index) => {
+                                tickerNews.slice(0, 4).map((result, index) => {
                                     return (
                                         <a key={index} target="blank_" href={result.article_url} className={`mb-1`}>
                                             <div className={`flex gap-4 p-2 rounded-lg cursor-pointer hover:bg-gray-400 hover:bg-opacity-5 transition-all duration-200 ease-in-out`}>
@@ -598,7 +314,7 @@ export default function TickerOverview() {
                                     )
                                 })
                             ) : (
-                                <TbLoader size={24} className={`text-white mx-auto w-fit animate-spin`} />
+                                <TbLoader2 size={24} className={`text-white mx-auto w-fit animate-spin`} />
                             )}
                         </div>
                     </div>

@@ -6,9 +6,7 @@ import './output.css';
 import './input.css';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <Router>
       <App />
-    </Router>
-  </StrictMode>,
+    </Router>,
 )
