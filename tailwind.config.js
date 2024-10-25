@@ -2,7 +2,11 @@
 module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        'spin-fast-to-slow': 'spin 1s infinite',
+      },
+    },
   },
   plugins: [require('daisyui')],
   daisyui: {
