@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react"
 import { supabase } from "../utils/supabase"
 import { FaCircle } from "react-icons/fa6";
-import { CiSearch, CiFilter, CiUndo } from "react-icons/ci";
+import { CiSearch, CiFilter, CiUndo, CiCirclePlus } from "react-icons/ci";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { TbLoader2 } from "react-icons/tb";
 import { motion } from "framer-motion";
+import { Area, AreaChart, CartesianGrid, Line, LineChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { GoPlus } from "react-icons/go";
 
 export default function AccountHoldings() {
     const [holdings, setHoldings] = useState(undefined);
@@ -33,9 +35,127 @@ export default function AccountHoldings() {
         }, 1500);
     }
 
+    const data = [
+        {
+          "name": "Page A",
+          "uv": 4000,
+          "pv": 2400,
+          "amt": 2400
+        },
+        {
+          "name": "Page B",
+          "uv": 3000,
+          "pv": 1398,
+          "amt": 2210
+        },
+        {
+          "name": "Page C",
+          "uv": 2000,
+          "pv": 9800,
+          "amt": 2290
+        },
+        {
+          "name": "Page D",
+          "uv": 2780,
+          "pv": 3908,
+          "amt": 2000
+        },
+        {
+          "name": "Page E",
+          "uv": 1890,
+          "pv": 4800,
+          "amt": 2181
+        },
+        {
+          "name": "Page F",
+          "uv": 2390,
+          "pv": 3800,
+          "amt": 2500
+        },
+        {
+          "name": "Page G",
+          "uv": 3490,
+          "pv": 4300,
+          "amt": 2100
+        }
+    ]
+
     return (
         <div data-theme="dark" className={`flex-1 bg-base-300 p-10`}>
             <div className={`w-full mx-auto grid grid-cols-12 gap-3`}>
+                <div className={`col-span-6 p-6 border border-neutral bg-base-200 rounded-md`}>
+                    <p className={`font-medium text-white text-xl mb-4`}>Top Holdings Performance</p>
+                    <div className={`flex items-center gap-3 mb-4`}>
+                        <p className={`px-3 py-1.5 rounded-full border border-neutral bg-base-300 flex flex-row items-center gap-1.5`}><img src={`https://logo.clearbit.com/tesla.com`} alt="Tesla Logo" className={`w-5 aspect-square rounded-full`} />TSLA</p>
+                        <p className={`px-3 py-1.5 rounded-full border border-neutral bg-base-300 flex flex-row items-center gap-1.5`}><img src={`https://logo.clearbit.com/apple.com`} alt="Apple Logo" className={`w-5 aspect-square rounded-full`} />AAPL</p>
+                        <p className={`px-3 py-1.5 rounded-full border border-neutral bg-base-300 flex flex-row items-center gap-1.5`}><img src={`https://logo.clearbit.com/microsoft.com`} alt="Microsoft Logo" className={`w-5 aspect-square rounded-full`} />MSFT</p>
+                        <p className={`border border-neutral bg-base-300 rounded-full aspect-square hover:bg-neutral transition-all cursor-pointer`}><GoPlus size={23} className={`m-1.5`} /></p>
+                    </div>
+                    <ResponsiveContainer width={`100%`} height={250} className={``}>
+                        <AreaChart width={`100%`} height={`100%`} data={data}>
+                            <XAxis axisLine={false} tickLine={false} tick={{ fill: '#FFFFFF' }} height={30} tickMargin={15} dataKey="name"  />
+                            <YAxis axisLine={false} tickLine={false} orientation="left" tick={{ fill: '#FFFFFF' }} width={60} tickMargin={10} />
+                            <Tooltip cursor={false} content={(props) => {
+                                return ( props.payload.length > 0 ? (
+                                    <div className={`rounded-lg bg-neutral p-2 bg-opacity-80`}>
+                                        <p className={`text-sm mb-1`}>{props.label}</p>
+                                        <p style={{ color: props.payload[0].color }}>{props.payload[0].dataKey}: ${Number(props.payload[0].value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                        <p style={{ color: props.payload[1].color }}>{props.payload[1].dataKey}: ${Number(props.payload[1].value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                        <p style={{ color: props.payload[2].color }}>{props.payload[2].dataKey}: ${Number(props.payload[2].value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                                    </div>) : (<div className={`hidden fixed top-0 left-0`}></div>)
+                                )
+                            }} formatter={(value) => `$${value.toLocaleString()}`} />
+                            <Area type="monotone" dataKey="pv" stroke="#82CA9D" strokeWidth={1} fill="#82CA9D" fillOpacity={0.8} />
+                            <Area type="monotone" dataKey="uv" stroke="#FFFFFF" strokeWidth={1} fill="#FFFFFF" fillOpacity={0.8}/>
+                            <Area type="monotone" dataKey="amt" stroke="#8884D8" strokeWidth={1} fill="#8884D8" fillOpacity={0.8}/>
+                            <CartesianGrid vertical={false} strokeDasharray={``} stroke="#FFFFFF" strokeLinecap="round" strokeOpacity={0.1} strokeWidth={2} />
+                        </AreaChart>
+                    </ResponsiveContainer>
+                </div>
+                <div className={`col-span-6 p-6 border border-neutral bg-base-200 rounded-md`}>
+                    <p className={`font-medium text-white text-xl mb-4`}>Portfolio Statistics</p>
+                    <div className={``}>
+                        <div className={`shadow mb-2 flex items-center justify-between`}>
+                            <div className={``}>
+                                <div className={`text-2xl text-white font-bold`}>35</div>
+                                <div className={`text-lg text-base-content`}>Stock Trades</div>
+                            </div>
+                            <div className={``}>
+                                <div className={`text-2xl text-white font-bold`}>5</div>
+                                <div className={`text-lg text-base-content`}>Mutual Fund Trades</div>
+                            </div>
+                            <div className={``}>
+                                <div className={`text-2xl text-white font-bold`}>0</div>
+                                <div className={`text-lg text-base-content`}>Bond Trades</div>
+                            </div>
+                        </div>
+                        <div className={`w-full rounded-md overflow-hidden flex-1 flex flex-row h-10 mb-6`}>
+                            <div className={`h-full w-[90%] bg-accent tooltip tooltip-top cursor-pointer rounded-l-md hover:bg-opacity-75 transition-all`} data-tip={`Total Stock Trades: 90%`}></div>
+                            <div className={`h-full w-[10%] bg-primary tooltip tooltip-top cursor-pointer rounded-r-md hover:bg-opacity-75 transition-all`} data-tip={`Total Mutual Fund Trades: 10%`}></div>
+                            {/* <div className={`w-full h-1/3 bg-warning`}></div> */}
+                        </div>
+                        <div className={`shadow mb-2 flex items-center justify-between`}>
+                            <div className={``}>
+                                <div className={`text-2xl text-white font-semibold`}>$80,000.00</div>
+                                <div className={`text-lg text-base-content`}>Equity in Stocks</div>
+                            </div>
+                            <div className={``}>
+                                <div className={`text-2xl text-white font-semibold`}>$10,000.00</div>
+                                <div className={`text-lg text-base-content`}>Equity in Mutual Funds</div>
+                            </div>
+                            <div className={``}>
+                                <div className={`text-2xl text-white font-semibold`}>$10,000.00</div>
+                                <div className={`text-lg text-base-content`}>Equity in Cash</div>
+                            </div>
+                        </div>
+                        <div className={`w-full rounded-md overflow-hidden flex-1 flex flex-row h-10 mb-6`}>
+                            <div className={`h-full w-[80%] bg-accent tooltip tooltip-top cursor-pointer rounded-l-md hover:bg-opacity-75 transition-all`} data-tip={`Equity in Stocks: 80%`}></div>
+                            <div className={`h-full w-[10%] bg-primary tooltip tooltip-top cursor-pointer hover:bg-opacity-75 transition-all`} data-tip={`Equity in Mutual Funds: 10%`}></div>
+                            <div className={`h-full w-[10%] bg-warning tooltip tooltip-top cursor-pointer rounded-r-md hover:bg-opacity-75 transition-all`} data-tip={`Equity in Cash: 10%`}></div>
+                            {/* <div className={`w-full h-1/3 bg-warning`}></div> */}
+                        </div>
+                    </div>
+                </div>
                 <div className={`col-span-4`}>
                     <p className={`mb-0.5`}>Search for Tickers</p>
                     <div className={`relative flex flex-row gap-2`}>
