@@ -9,9 +9,11 @@ import { TbAlertSquareRounded } from "react-icons/tb";
 import { TbCheck } from "react-icons/tb";
 import { FiClock } from "react-icons/fi";
 import { YAxis, ResponsiveContainer, Area, AreaChart } from 'recharts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AccountSummaryPreview from '../components/AccountSummaryPreview';
+import * as THREE from 'three';
+import WebGL from 'three/addons/capabilities/WebGL.js';
 
 const data = [
     {

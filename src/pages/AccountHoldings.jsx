@@ -86,9 +86,9 @@ export default function AccountHoldings() {
                 <div className={`col-span-6 p-6 border border-neutral bg-base-200 rounded-md`}>
                     <p className={`font-medium text-white text-xl mb-4`}>Top Holdings Performance</p>
                     <div className={`flex items-center gap-3 mb-4`}>
-                        <p className={`px-3 py-1.5 rounded-full border border-neutral bg-base-300 flex flex-row items-center gap-1.5`}><img src={`https://logo.clearbit.com/tesla.com`} alt="Tesla Logo" className={`w-5 aspect-square rounded-full`} />TSLA</p>
-                        <p className={`px-3 py-1.5 rounded-full border border-neutral bg-base-300 flex flex-row items-center gap-1.5`}><img src={`https://logo.clearbit.com/apple.com`} alt="Apple Logo" className={`w-5 aspect-square rounded-full`} />AAPL</p>
-                        <p className={`px-3 py-1.5 rounded-full border border-neutral bg-base-300 flex flex-row items-center gap-1.5`}><img src={`https://logo.clearbit.com/microsoft.com`} alt="Microsoft Logo" className={`w-5 aspect-square rounded-full`} />MSFT</p>
+                        <p className={`px-3 py-1.5 rounded-full border border-[#8884D8] bg-base-300 flex flex-row items-center gap-1.5`}><img src={`https://logo.clearbit.com/tesla.com`} alt="Tesla Logo" className={`w-5 aspect-square rounded-full`} />TSLA</p>
+                        <p className={`px-3 py-1.5 rounded-full border border-white bg-base-300 flex flex-row items-center gap-1.5`}><img src={`https://logo.clearbit.com/apple.com`} alt="Apple Logo" className={`w-5 aspect-square rounded-full`} />AAPL</p>
+                        <p className={`px-3 py-1.5 rounded-full border border-[#82CA9D] bg-base-300 flex flex-row items-center gap-1.5`}><img src={`https://logo.clearbit.com/microsoft.com`} alt="Microsoft Logo" className={`w-5 aspect-square rounded-full`} />MSFT</p>
                         <p className={`border border-neutral bg-base-300 rounded-full aspect-square hover:bg-neutral transition-all cursor-pointer`}><GoPlus size={23} className={`m-1.5`} /></p>
                     </div>
                     <ResponsiveContainer width={`100%`} height={250} className={``}>
@@ -117,15 +117,15 @@ export default function AccountHoldings() {
                     <div className={``}>
                         <div className={`shadow mb-2 flex items-center justify-between`}>
                             <div className={``}>
-                                <div className={`text-2xl text-white font-bold`}>35</div>
+                                <div className={`text-2xl text-emerald-500 font-bold`}>35</div>
                                 <div className={`text-lg text-base-content`}>Stock Trades</div>
                             </div>
                             <div className={``}>
-                                <div className={`text-2xl text-white font-bold`}>5</div>
+                                <div className={`text-2xl text-primary font-bold`}>5</div>
                                 <div className={`text-lg text-base-content`}>Mutual Fund Trades</div>
                             </div>
                             <div className={``}>
-                                <div className={`text-2xl text-white font-bold`}>0</div>
+                                <div className={`text-2xl text-warning font-bold`}>0</div>
                                 <div className={`text-lg text-base-content`}>Bond Trades</div>
                             </div>
                         </div>
@@ -136,15 +136,15 @@ export default function AccountHoldings() {
                         </div>
                         <div className={`shadow mb-2 flex items-center justify-between`}>
                             <div className={``}>
-                                <div className={`text-2xl text-white font-semibold`}>$80,000.00</div>
+                                <div className={`text-2xl text-emerald-500 font-semibold`}>$80,000.00</div>
                                 <div className={`text-lg text-base-content`}>Equity in Stocks</div>
                             </div>
                             <div className={``}>
-                                <div className={`text-2xl text-white font-semibold`}>$10,000.00</div>
+                                <div className={`text-2xl text-primary font-semibold`}>$10,000.00</div>
                                 <div className={`text-lg text-base-content`}>Equity in Mutual Funds</div>
                             </div>
                             <div className={``}>
-                                <div className={`text-2xl text-white font-semibold`}>$10,000.00</div>
+                                <div className={`text-2xl text-warning font-semibold`}>$10,000.00</div>
                                 <div className={`text-lg text-base-content`}>Equity in Cash</div>
                             </div>
                         </div>
